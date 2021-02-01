@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <td width="20%"><b>Status</b></td>
-                        <td>{{ $izin_data->status == 1 ? 'diterima' : 'ditolak'}}</td>
+                        <td>{{ $izin_data->status == 0 ? 'menunggu' : 'diterima'}}</td>
                     </tr>
                     <tr>
                         <td width="20%"><b>Created At</b></td>

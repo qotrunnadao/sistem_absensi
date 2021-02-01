@@ -15,7 +15,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                             </div>
-                            <input type="text" id="dari" class="form-control datepicker" data-language="en" data-date-format="yyyy-mm-dd" name="dari">
+                            <input type="text" id="dari" class="form-control datepicker" data-language="id" data-date-format="yyyy-mm-dd" name="dari">
 
                         </div>
                     </div>

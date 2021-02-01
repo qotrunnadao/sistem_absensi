@@ -11,15 +11,14 @@
                     @if ($button == 'Edit'){{ method_field('PUT') }}@endif
 
                     <div class="form-group row">
-                        <label class="col-md-2" for="bigint">Nama Karyawan</label>
+                        <label class="col-md-2" for="varchar">Nama Karyawan</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="user_id" id="user_id" placeholder="Nama Karyawan" value="@if ($button == 'Tambah'){{ old('user_id') }}@else{{ $absensi_data->user->user_id }}@endif" />
-                            @if ($errors->has('user_id'))
-                            <div class="text-danger">
-                                {{ $errors->first('user_id') }}
-                            </div>
-                            @endif
-
+                            <select name="user_id" id="user_id" class="form-control">
+                                <option value="">PILIH</option>
+                                @foreach ($user as $value)
+                                <option value="{{ $value->id }}" {{ $value->id == $absensi_data->user_id ? 'selected' : '' }}>{{ $value->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -37,15 +36,11 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="varchar">Foto</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="foto" id="foto" placeholder="Foto" value="@if ($button == 'Tambah'){{ old('foto') }}@else{{ $absensi_data->foto }}@endif" />
-                            @if ($errors->has('foto'))
-                            <div class="text-danger">
-                                {{ $errors->first('foto') }}
-                            </div>
-                            @endif
-
+                            <input type="file" name="foto">
+                            {{-- <img src="{{ asset('storage/'. $user['foto']) }}" width="70" height="100" alt="" class="img.thumbnail"> --}}
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label class="col-md-2" for="varchar">Latitude</label>
                         <div class="col-md-6">

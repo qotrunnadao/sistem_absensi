@@ -10,20 +10,44 @@
                 <div class="table-responsive mt-3">
                     <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Absensi">
                         <thead>
-                            <tr>
-                                <th class="text-center" width="5%">No</th>
+                            <tr class="text-center">
+                                <th>No</th>
                                 <th>Nama karyawan</th>
+                                <th>Waktu</th>
                                 <th>Jenis</th>
                                 <th>Foto</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
-                                <th>Waktu</th>
-                                <th class="text-center" width="15%">Aksi</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
+                        <tbody class="text-center">
+                            {{--  looping database  --}}
+                            @php ($no = 1)
+                            @foreach ($absensi as $value)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $value->user->name }}</td>
+                                <td>{{ $value->created_at }}</td>
+                                <td>{{ $value->jenis == 1 ? 'masuk' : 'pulang'  }}</td>
+                                <td>{{ $value->ShowFoto }}</td>
+                                <td>{{ $value->latitude }}</td>
+                                <td>{{ $value->longitude }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="absensi/show/$id" class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="absensi/delete/$id" class='show btn btn-danger btn-sm'><i class='fa fa-trash-alt'></i></a>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                            @endforeach
+                            {{--  end looping database --}}
+                        </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>
@@ -32,43 +56,28 @@
 @endsection
 @section('javascripts')
 <script>
-    var table = $("#table-Absensi").DataTable({
-            pageLength: 10,
-            processing: true,
-            serverSide: true,
-            responsive: true,
-            ajax: "{{ route('absensi.data') }}",
-            columns: [
-                {
-                    "data": "DT_RowIndex"
-                },
-
-									{
-										"data": "user.name"
-									},
-									{
-										"data": "jenis"
-									},
-									{
-										"data": "foto"
-									},
-									{
-										"data": "latitude"
-									},
-									{
-										"data": "longitude"
-									},
-									{
-										"data": "created_at"
-									},
-                {
-                    "data" : "action",
-                    "orderable": false,
-                    "className" : "text-center"
-                },
-
-            ],
+    $(document).ready(function(){
+               $('#table-Absensi').DataTable();
+           });
+           $(document).ready(function() {
+            $("#table-Izin").on('click','.hapus', function(e) {
+                e.preventDefault();
+                var form = $(this).parents('form');
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Apakah anda yakin menghapus data ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                        form.submit();
+                    }
+                })
+            });
         });
-
 </script>
 @endsection

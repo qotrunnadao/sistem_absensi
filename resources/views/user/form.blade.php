@@ -57,24 +57,31 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label class="col-md-2" for="varchar">Foto</label>
                         <div class="col-md-6">
                             <div class="custom file">
                                 <input type="file" class="custom-file-input" name="foto" id="foto" placeholder="foto" value="@if ($button == 'Tambah'){{ old('foto') }}@else{{ $user->foto }}@endif" />
-                                <label class="custom-file-label" for="foto">Pilih File</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-2">
-                            <button type="submit" class="btn btn-primary my-3"><i class="fas fa-save"></i> <?= $button ?></button>
-                            <a href="<?= url('') ?>/user" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
-                        </div>
-                    </div>
-                </form>
+                    <label class="custom-file-label" for="foto">Pilih File</label>
             </div>
         </div>
+    </div> --}}
+    <div class="form-group row">
+        <label class="col-md-2" for="varchar">Foto</label>
+        <div class="col-md-6">
+            <input type="file" name="foto">
+            {{-- <img src="{{ asset('storage/'. $user['foto']) }}" width="70" height="100" alt="" class="img.thumbnail"> --}}
+        </div>
     </div>
+    <div class="form-group row">
+        <div class="col-md-6 offset-md-2">
+            <button type="submit" class="btn btn-primary my-3"><i class="fas fa-save"></i> <?= $button ?></button>
+            <a href="<?= url('') ?>/user" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
+        </div>
+    </div>
+    </form>
+</div>
+</div>
+</div>
 </div>
 @endsection

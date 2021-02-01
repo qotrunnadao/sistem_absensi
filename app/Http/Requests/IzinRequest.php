@@ -25,6 +25,7 @@ class IzinRequest extends FormRequest
     public function rules()
     {
         return [
+            'status' => 'Required',
             'keterangan' => 'Required',
         ];
     }

@@ -33,13 +33,19 @@
                             @foreach ($data_user as $value)
                             <tr class="text-center">
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $value->foto }}</td>
+                                <td>
+                                    @if ($value->foto)
+                                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
+                                    @else
+                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
+                                    @endif
+
+                                </td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->level == 0 ? 'admin' : 'karyawan'}}</td>
                                 <td>{{ $value->created_at }}</td>
                                 <td>
-
                                     <div class="btn-group">
                                         <a href="{{ route('user.show', $value->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     </div>

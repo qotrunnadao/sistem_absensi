@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?=url('') ?>/absensi/formcetak" class="nav-link {{ active_menu(1,'kamera') }}">
+                    <a href="<?=url('') ?>/absensi/formcetak" class="nav-link {{ active_menu(1,'laporan') }}">
                         <i class="nav-icon fas fa-print"></i>
                         <p>Cetak Laporan</p>
                     </a>

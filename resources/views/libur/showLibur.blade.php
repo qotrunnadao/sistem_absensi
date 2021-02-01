@@ -3,6 +3,12 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
+        <div class="callout callout-danger">
+            <h5>Libur {{ $libur_data->nama_libur }}</h5>
+
+            <p>{{ $libur_data->keterangan }} <br>
+                {{ $libur_data->tanggal }}</p>
+        </div>
         <div class="card card-outline card-info">
             <h5 class="card-header bg-transparent border-bottom mt-0"> Detail Data Libur </h5>
             <div class="card-body">

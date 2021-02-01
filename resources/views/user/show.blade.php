@@ -43,8 +43,15 @@
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        {{-- <td><img class="img-fluid pad" src={{ asset("adminlte/dist/img/avatar2.png") }} alt="Photo"></td> --}}
-                        <td> {{ $user->foto }}</td>
+                        <div class="mb-3 float-left">
+                            @if ($user->foto)
+                            <img src="{{ asset('storage/fotouser/' . $user->foto) }}" alt="{{ $user->name }}" width="150" height="200">
+                            @else
+                            <img src="{{ asset('img/not-found.png' . $user->foto) }}" alt="{{ $user->name }}" width="150" height="200">
+                            @endif
+                            {{-- <img src="{{ asset('fotoUser/' , $user['foto']) }}" width="150" height="200" alt=""> --}}
+                        </div>
+
                     </tr>
                     <tr>
                         <td widht="20%"><b>Nama</b></td>

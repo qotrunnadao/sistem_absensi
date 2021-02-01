@@ -5,6 +5,8 @@ use App\Http\Controllers\IzinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LiburController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,17 +24,18 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('user', UserController::class);
+    Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+
 
 
     // route untuk Absensi
     Route::get('absensi', [AbsensiController::class, 'index']);
     Route::get('absensi/data', [AbsensiController::class, 'data_json'])->name('absensi.data');
     Route::get('absensi/create', [AbsensiController::class, 'create']);
-    Route::post('absensi/store', [AbsensiController::class, 'store']);
+    Route::post('absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
     Route::get('absensi/edit/{id}', [AbsensiController::class, 'edit']);
     Route::put('absensi/update/{id}', [AbsensiController::class, 'update']);
     Route::get('absensi/delete/{id}', [AbsensiController::class, 'delete']);
@@ -47,15 +50,17 @@ Route::middleware('auth')->group(function () {
 
 
     // route untuk Izin
-    Route::get('izin', [IzinController::class, 'index']);
-    Route::get('izin/data', [IzinController::class, 'data_json'])->name('izin.data');
-    Route::get('izin/create', [IzinController::class, 'create']);
+
+    // Route::get('izin', [IzinController::class, 'index']);
+    // Route::get('izin/data', [IzinController::class, 'data_json'])->name('izin.data');
+    // Route::get('izin/create', [IzinController::class, 'create']);
     Route::post('izin/store', [IzinController::class, 'store']);
-    Route::get('izin/edit/{id}', [IzinController::class, 'edit']);
-    Route::put('izin/update/{id}', [IzinController::class, 'update']);
-    Route::get('izin/delete/{id}', [IzinController::class, 'delete']);
-    Route::get('izin/cari', [IzinController::class, 'cari']);
-    Route::get('izin/show/{id}', [IzinController::class, 'show']);
+    // Route::get('izin/edit', [IzinController::class, 'edit']);
+    // Route::put('izin/update', [IzinController::class, 'update']);
+    Route::get('izin/delete', [IzinController::class, 'destroy']);
+    // Route::get('izin/cari', [IzinController::class, 'cari']);
+    // Route::get('izin/show/{id}', [IzinController::class, 'show']);
+    Route::resource('izin', IzinController::class);
 
 
     //route untuk tabel libur

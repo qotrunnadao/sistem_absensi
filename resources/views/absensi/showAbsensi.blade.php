@@ -8,8 +8,8 @@
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        <td width="20%"><b>User Id</b></td>
-                        <td>{{ $absensi_data->user_id }}</td>
+                        <td width="20%"><b>Nama Karyawan</b></td>
+                        <td>{{ $absensi_data->user->name }}</td>
                     </tr>
                     <tr>
                         <td width="20%"><b>Jenis</b></td>
@@ -17,7 +17,7 @@
                     </tr>
                     <tr>
                         <td width="20%"><b>Foto</b></td>
-                        <td>{{ $absensi_data->foto }}</td>
+                        <td>{{ $absensi_data->ShowFoto }}</td>
                     </tr>
                     <tr>
                         <td width="20%"><b>Latitude</b></td>

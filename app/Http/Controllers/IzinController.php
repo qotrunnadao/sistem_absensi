@@ -19,32 +19,37 @@ class IzinController  extends Controller
 
     public function index()
     {
-        return view('izin/indexIzin');
+        $data = array(
+            'izin_data' => Izin::with('user')->latest()->get(),
+        );
+        return view('izin/indexIzin', $data);
     }
 
-    public function data_json(Request $request)
-    {
-        if ($request->ajax()) {
-            $data =  Izin::with('user')->latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $id = $row['id'];
-                    $btn = "<a href='izin/delete/$id' class='delete btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></a>";
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-    }
+    // public function data_json(Request $request)
+    // {
+    //     if ($request->ajax()) {
+    //         $data =  Izin::with('user')->latest()->get();
+    //         return Datatables::of($data)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', function ($row) {
+    //                 $id = $row['id'];
+    //                 $btn = "<a href='izin/delete/$id' class='delete btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></a>";
+    //                 return $btn;
+    //             })
+    //             ->rawColumns(['action'])
+    //             ->make(true);
+    //     }
+    // }
 
     public function create()
     {
         $data = [
+
             'action' => url('izin/store'),
             'button' => 'Tambah',
-            'user' => User::get(),
             'izin_data' => new Izin(),
+            'user' => User::get(),
+
         ];
         return view('izin/createIzin', $data);
     }
@@ -61,6 +66,15 @@ class IzinController  extends Controller
         Izin::create($request->all());
         Alert::success('Berhasil', 'Berhasil tambah data Izin');
         return redirect('/izin');
+        $data = $request->all();
+
+        if (Izin::create($data)) {
+            Alert::success('Berhasil', 'Berhasil Tambah Data Izin');
+        } else {
+            Alert::warning('Gagal', 'Data Izin Gagal Ditambahkan');
+        }
+
+        return redirect(route('izin.index'));
     }
 
 
@@ -98,7 +112,6 @@ class IzinController  extends Controller
         ]);
 
         $izin = Izin::where('id', $id)->first();
-        // $izin->user_id = $request->user->name;
         $izin->user_id = $request->user_id;
         $izin->keterangan = $request->keterangan;
         $izin->tgl_mulai = $request->tgl_mulai;
@@ -110,7 +123,7 @@ class IzinController  extends Controller
         return redirect('/izin');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $izin = Izin::find($id);
         $izin->delete();

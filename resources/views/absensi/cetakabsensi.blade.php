@@ -12,13 +12,13 @@
     border: 1px solid #259dab;
     }
     </style>
-
     <title>Cetak Absensi</title>
 </head>
 
 <body>
     <div class="form-group">
-        <p align="center"><b>LAPORAN ABSENSI KARYAWAN</b></p>
+        <p align="center"><b>LAPORAN ABSENSI KARYAWAN</b> <br>
+            CV. JENDERAL SOFTWARE</p>
         <table class="static" align="center" rules="all" border="1px" style="width:95% ">
             <thead>
                 <tr>
@@ -47,7 +47,6 @@
                 @endforeach
         </table>
     </div>
-
 </body>
 
 </html>

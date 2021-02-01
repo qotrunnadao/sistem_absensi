@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -52,4 +53,14 @@ class User extends Authenticatable
     {
         return Carbon::parse($this->attributes['updated_at'])->translatedFormat('d F Y H:i:s');
     }
+
+    // public function getShowFotoAttribute()
+    // {
+    //     // dd($this->attributes);
+    //     if (isset($this->attribute['foto'])) {
+    //         return asset('storage/fotouser/' . $this->attributes['foto']);
+    //     } else {
+    //         return asset('img/not-found.png');
+    //     }
+    // }
 }

@@ -19,7 +19,7 @@ class CreateIzinTable extends Migration
             $table->text('keterangan');
             $table->date('tgl_mulai');
             $table->date('tgl_berakhir');
-            $table->tinyInteger('status')->comment('1=diterima, 0=ditolak')->default(1);
+            $table->tinyInteger('status')->comment('0=menunggu', '1=diterima', '2=ditolak')->default(0);
             $table->timestamps();
         });
     }
