@@ -30,7 +30,12 @@
                                 <td>{{ $value->user->name }}</td>
                                 <td>{{ $value->created_at }}</td>
                                 <td>{{ $value->jenis == 1 ? 'masuk' : 'pulang'  }}</td>
-                                <td>{{ $value->ShowFoto }}</td>
+                                <td>
+                                    @if ($value->foto)
+                                    <img src="{{ asset('storage/absensi/' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
+                                    @else
+                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
+                                    @endif</td>
                                 <td>{{ $value->latitude }}</td>
                                 <td>{{ $value->longitude }}</td>
                                 <td>

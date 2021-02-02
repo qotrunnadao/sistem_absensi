@@ -33,11 +33,9 @@
                             @csrf
                             <div class="" id="my_camera"></div>
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-
-                            <input type="button" class="btn btn-primary" value="Masuk" onClick="take_snapshot()">
+                            <button class="btn btn-primary" value="" onClick="take_snapshot()">masuk</button>
                             <input type="hidden" name="image" class="image-tag">
-
-                            <input type="button" class="btn btn-danger" value="Pulang" onClick="take_snapshot()">
+                            <button type="button" class="btn btn-danger" value="" onClick="take_snapshot()">pulang</button>
                             <input type="hidden" name="image" class="image-tag">
                         </form>
                     </div>

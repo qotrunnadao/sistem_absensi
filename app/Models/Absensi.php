@@ -29,15 +29,15 @@ class Absensi extends Model
         return Carbon::parse($this->attributes['updated_at'])->translatedFormat('d F Y H:i:s');
     }
 
-    public function getShowFotoAttribute()
-    {
-        // dd($this->attributes);
-        if (isset($this->attribute['foto'])) {
-            return asset('storage/absensi/' . $this->attributes['foto']);
-        } else {
-            return asset('img/not-found.png');
-        }
-    }
+    // public function getShowFotoAttribute()
+    // {
+    //     // dd($this->attributes);
+    //     if (isset($this->attribute['foto'])) {
+    //         return asset('storage/absensi/' . $this->attributes['foto']);
+    //     } else {
+    //         return asset('img/not-found.png');
+    //     }
+    // }
 }
 
 

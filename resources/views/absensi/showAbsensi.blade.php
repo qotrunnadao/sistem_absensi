@@ -17,7 +17,13 @@
                     </tr>
                     <tr>
                         <td width="20%"><b>Foto</b></td>
-                        <td>{{ $absensi_data->ShowFoto }}</td>
+                        <td>
+                            @if ($value->foto)
+                            <img src="{{ asset('storage/absensi/' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
+                            @else
+                            <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
+                            @endif</td>
+                        </td>
                     </tr>
                     <tr>
                         <td width="20%"><b>Latitude</b></td>

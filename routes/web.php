@@ -44,8 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('absensi/kamera', function () {
         return view('absensi.kamera');
     });
-    Route::get('absensi/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
-    Route::get('absensi/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
+    Route::get('/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
+    Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
 
 
 

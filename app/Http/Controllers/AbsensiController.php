@@ -37,34 +37,34 @@ class AbsensiController  extends Controller
     //     }
     // }
 
-    public function create()
-    {
-        return view('absensi/createAbsensi', ['action' => url('absensi/store'), 'button' => 'Tambah']);
-    }
+    // public function create()
+    // {
+    //     return view('absensi/createAbsensi', ['action' => url('absensi/store'), 'button' => 'Tambah']);
+    // }
 
     public function store(Request $request)
     {
+
+
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
 
         $image_base64 = base64_decode($image_parts[1]);
         $fileName = time() . '.png';
-
-        $this->validate($request, [
-            'user_id' => 'required|max:100',
-            'jenis' => 'required|max:100',
-            'foto' => 'required|max:100',
-            'latitude' => 'required|max:100',
-            'longitude' => 'required|max:100',
-        ]);
-
         $data = $request->all();
 
-        Storage::disk('public')->put('absensi/' . $fileName, file_get_contents($image_base64));
-        Absensi::create($data);
-        $data['foto'] = $fileName;
+        Storage::disk('public')->put('absensi/' . $fileName, $image_base64);
 
+        // $this->validate($request, [
+        //     'user_id' => 'required|max:100',
+        //     'jenis' => 'required|max:100',
+        //     'foto' => 'required|max:100',
+        //     'latitude' => 'required|max:100',
+        //     'longitude' => 'required|max:100',
+        // ]);
+        $data['foto'] = $fileName;
+        Absensi::create($data);
         Alert::success('Berhasil', 'Berhasil tambah data Absensi');
         return redirect('/dashboard');
     }
@@ -107,7 +107,9 @@ class AbsensiController  extends Controller
 
     public function delete($id)
     {
-        $absensi = Absensi::find($id);
+        $absensi = Absensi::where('id', $id)->firstOrFail();
+        // $absensi = Absensi::find($id);
+
         $absensi->delete();
         // alihkan halaman ke halaman Absensi
         Alert::success('Berhasil', 'Berhasil hapus data Absensi');
@@ -123,6 +125,13 @@ class AbsensiController  extends Controller
     {
         // dd(["dari :" . $dari, "sampai :" . $sampai]);
         $cetakabsensi = Absensi::with('user')->whereBetween('created_at', [$dari, $sampai])->get();
-        return view('absensi.cetakabsensi', compact('cetakabsensi'));
+        return view(
+            'absensi.cetakabsensi',
+            compact(
+                'cetakabsensi',
+                'dari',
+                'sampai'
+            ),
+        );
     }
 }
