@@ -21,6 +21,7 @@
                                 {{-- <th>Created At</th>
                                 <th>Updated At</th> --}}
                                 <th>Aksi</th>
+                                <th>Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,30 +45,33 @@
                                 <td>
                                     @if($value->status == 0)
                                     <div class="btn-group">
-                                        <a href="{{ route('izin.diterima', $value->status) }}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i></a>
+                                        <a href="{{ route('izin.diterima', $value->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-check"></i></a>
                                     </div>
                                     <div class="btn-group">
-                                        <a href="{{ route('izin.ditolak', $value->status) }}" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
+                                        <a href="{{ route('izin.ditolak', $value->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
                                     </div>
                                     @elseif($value->status == 1)
                                     diterima
                                     @else
                                     ditolak
                                     @endif
+                                <td>
+                                    <form action="{{ route('izin.destroy', $value->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </td>
 
 
-                                    {{-- <div class="btn-group">
+                                {{-- <div class="btn-group">
                                         <a href="{{ route('izin.show', $value->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                 </div>
                 <div class="btn-group">
                     <a href="{{ route('izin.edit', $value->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                 </div>
                 <div class="btn-group"> --}}
-                    {{-- <form action="{{ route('izin.destroy', $value->id) }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
-                    </form> --}}
+                    {{--  --}}
                 </div>
                 </td>
                 </tr>

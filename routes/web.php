@@ -58,9 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::post('izin/store', [IzinController::class, 'store']);
     // Route::get('izin/edit', [IzinController::class, 'edit']);
     // Route::put('izin/update', [IzinController::class, 'update']);
-    Route::get('izin/delete', [IzinController::class, 'destroy']);
-    Route::get('izin/diterima', [IzinController::class, 'diterima'])->name('izin.diterima');
-    Route::get('izin/ditolak', [IzinController::class, 'ditolak'])->name('izin.ditolak');
+    Route::get('izin/delete/{id}', [IzinController::class, 'destroy'])->name('izin.destroy');
+    Route::get('izin/diterima/{izin}', [IzinController::class, 'diterima'])->name('izin.diterima');
+    Route::get('izin/ditolak/{izin}', [IzinController::class, 'ditolak'])->name('izin.ditolak');
     // Route::get('izin/cari', [IzinController::class, 'cari']);
     // Route::get('izin/show/{id}', [IzinController::class, 'show']);
     Route::resource('izin', IzinController::class);

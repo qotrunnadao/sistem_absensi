@@ -1,22 +1,15 @@
 @extends('layouts.app')
 @section('title','Data User')
 @section('content')
-<div class="card-body">
-    <div class="row">
-        <div class="col-12">
-            <div class="card card-outline card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Data User</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
-                    <table id="mytable" class="table table-bordered table-hover mb-3">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-info">
+            <h5 class="card-header bg-transparent border-bottom mt-0"> Data User </h5>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+                <div class="table-responsive mt-3">
+                    <table id="mytable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr class="text-center">
                                 <th>No.</th>
@@ -35,9 +28,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>
                                     @if ($value->foto)
-                                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
+                                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
                                     @else
-                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
+                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
                                     @endif
 
                                 </td>
@@ -52,28 +45,25 @@
                                     <div class="btn-group">
                                         <a href="{{ route('user.edit', $value->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                     </div>
-                                    {{-- <div class="btn-group">
-                                        <a href="{{ route('user.destroy', $value->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
-                </div> --}}
-                <div class="btn-group">
-                    <form action="{{ route('user.destroy', $value->id) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
-                    </form>
-                </div>
-                </td>
-                </tr>
-                @endforeach
-                </tbody>
-                <tr>
+
+                                    <div class="btn-group">
+                                        <form action="{{ route('user.destroy', $value->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tr>
                     </table>
+                </div>
             </div>
             <!-- /.card-body -->
         </div>
     </div>
-
-</div>
 </div>
 <script>
     $(document).ready(function(){

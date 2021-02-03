@@ -17,7 +17,7 @@ class AbsensiController  extends Controller
 
     public function index()
     {
-        $absensi = Absensi::with('user')->get();
+        $absensi = Absensi::with('user')->latest()->get();
         return view('absensi/indexAbsensi', compact('absensi'));
     }
 

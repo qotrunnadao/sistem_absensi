@@ -26,6 +26,8 @@
 
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- Sweet Alert --->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.css') }}">
 
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
@@ -37,8 +39,8 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
-    <!-- Sweet Alert --->
-    <link href="{{ asset('adminlte/plugins/sweetlert2/sweetalert2.css') }}" <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}">
+
+    <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}">
     </script>
     <script src="{{ asset('js/super.js') }}"></script>
     <!-- Webcam -->
@@ -151,9 +153,8 @@
     <!-- date-range-picker -->
     <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Sweet Alert -->
-    <script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert.js') }}"></script>
-    {{-- <script src="{{ asset('adminlte/dist/js/pages/dashboard2.js') }}"></script>
-    --}}
+    <script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.js') }}"></script>
+
     <script>
         // var site_url = '<?= url('
         // ') ?>';

@@ -125,7 +125,8 @@ class IzinController  extends Controller
 
     public function destroy($id)
     {
-        $izin = Izin::find($id);
+        $izin = Izin::where('id', $id)->firstOrFail();
+        // $izin = Izin::find($id);
         $izin->delete();
         // alihkan halaman ke halaman Izin
         Alert::success('Berhasil', 'Berhasil hapus data Izin');
