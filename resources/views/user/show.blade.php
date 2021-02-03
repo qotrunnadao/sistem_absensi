@@ -45,11 +45,10 @@
                     <tr>
                         <div class="mb-3 float-left">
                             @if ($user->foto)
-                            <img src="{{ asset('storage/fotouser/' . $user->foto) }}" alt="{{ $user->name }}" width="150" height="200">
+                            <img src="{{ asset('storage/fotouser/' . $user->foto) }}" alt="{{ $user->name }}" class="fotoDetail">
                             @else
-                            <img src="{{ asset('img/not-found.png' . $user->foto) }}" alt="{{ $user->name }}" width="150" height="200">
+                            <img src="{{ asset('img/not-found.png' . $user->foto) }}" alt="{{ $user->name }}" class="fotoDetail">
                             @endif
-                            {{-- <img src="{{ asset('fotoUser/' , $user['foto']) }}" width="150" height="200" alt=""> --}}
                         </div>
 
                     </tr>

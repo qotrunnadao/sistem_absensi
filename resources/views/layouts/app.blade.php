@@ -11,6 +11,7 @@
         const site_url = "<?= url('') ?>";
     </script>
 
+    <link rel="stylesheet" href="{{ asset('mycss/style.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- overlayScrollbars -->
@@ -205,6 +206,23 @@
             });
     </script>
     @yield('javascripts')
+
+    <script>
+        function previewImg(){
+            const foto = document.querySelector('#foto');
+            const fotoLabel = document.querySelector('.custom-file-label');
+        const imgPreview = document.querySelector('.img-preview');
+
+        fotoLabel.textContent = foto.files[0].name;
+        const fileFoto = new FileReader();
+        fileFoto.readAsDataURL(foto.files[0]);
+        fileFoto.onload = function(e){
+            imgPreview.src = e.target.result;
+        }
+
+        }
+
+    </script>
 
 </body>
 

@@ -31,20 +31,23 @@
                                 <td>{{ $value->jenis == 1 ? 'masuk' : 'pulang'  }}</td>
                                 <td>
                                     @if ($value->foto)
-                                    <img src="{{ asset('storage/absensi/' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
+                                    <img src="{{ asset('storage/absensi/' . $value->foto) }}" alt="{{ $value->name }}" class="foto">
                                     @else
-                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
+                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" class="foto">
                                     @endif</td>
                                 <td>{{ $value->latitude }}</td>
                                 <td>{{ $value->longitude }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="absensi/show/$id" class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>
+                                        <a href="{{ route('absensi.show', $value->id) }}" class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>
                                     </div>
                                     <div class="btn-group">
-                                        <a href="absensi/delete/$id" class='show btn btn-danger btn-sm'><i class='fa fa-trash-alt'></i></a>
+                                        <form action="{{ route('absensi.delete', $value->id) }}" method="GET">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
                                     </div>
-
 
                                 </td>
                             </tr>
@@ -64,7 +67,7 @@
                $('#table-Absensi').DataTable();
            });
            $(document).ready(function() {
-            $("#table-Izin").on('click','.hapus', function(e) {
+            $("#table-Absensi").on('click','.hapus', function(e) {
                 e.preventDefault();
                 var form = $(this).parents('form');
                 Swal.fire({

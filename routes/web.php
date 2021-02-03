@@ -38,9 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::post('absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
     Route::get('absensi/edit/{id}', [AbsensiController::class, 'edit']);
     Route::put('absensi/update/{id}', [AbsensiController::class, 'update']);
-    Route::get('absensi/delete/{id}', [AbsensiController::class, 'delete']);
+    Route::get('absensi/delete/{id}', [AbsensiController::class, 'delete'])->name('absensi.delete');
     Route::get('absensi/cari', [AbsensiController::class, 'cari']);
-    Route::get('absensi/show/{id}', [AbsensiController::class, 'show']);
+    Route::get('absensi/show/{id}', [AbsensiController::class, 'show'])->name('absensi.show');
     Route::get('absensi/kamera', function () {
         return view('absensi.kamera');
     });

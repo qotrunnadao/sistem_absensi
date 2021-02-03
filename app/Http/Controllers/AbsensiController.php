@@ -77,38 +77,10 @@ class AbsensiController  extends Controller
         return view('absensi/showAbsensi', ['absensi_data' => $data_list]);
     }
 
-    // public function edit($id)
-    // {
-    //     $data_list = Absensi::find($id);
-    //     // passing data Absensi yang didapat
-    //     return view('absensi/createAbsensi', ['absensi_data' => $data_list, 'action' => url('absensi/update'), 'button' => 'Edit']);
-    // }
-
-    // public function update($id, Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'user_id' => 'required|max:100',
-    //         'jenis' => 'required|max:100',
-    //         'foto' => 'required|max:100',
-    //         'latitude' => 'required|max:100',
-    //         'longitude' => 'required|max:100',
-    //     ]);
-    //     $absensi = Absensi::where('id', $id)->first();
-    //     $absensi->user_id = $request->user_id;
-    //     $absensi->jenis = $request->jenis;
-    //     $absensi->foto = $request->foto;
-    //     $absensi->latitude = $request->latitude;
-    //     $absensi->longitude = $request->longitude;
-    //     $absensi->save();
-    //     // alihkan halaman ke halaman Absensi
-    //     Alert::success('Berhasil', 'Berhasil edit data Absensi');
-    //     return redirect('/absensi');
-    // }
-
     public function delete($id)
     {
-        $absensi = Absensi::where('id', $id)->firstOrFail();
-        // $absensi = Absensi::find($id);
+
+        $absensi = Absensi::find($id);
 
         $absensi->delete();
         // alihkan halaman ke halaman Absensi

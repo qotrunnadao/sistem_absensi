@@ -78,6 +78,15 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         $data = $request->all();
+        if ($request->file('foto')) {
+            $image = $request->file('foto');
+            $image_name = time() . '.' . $image->getClientOriginalExtension();
+            Storage::disk('public')->put('fotouser/' . $image_name, file_get_contents($image));
+
+            $data['foto'] = $image_name;
+        } else {
+            $data['foto'] = NULL;
+        }
         if ($data['password']) {
             $data['password'] = bcrypt($data['password']);
         } else {

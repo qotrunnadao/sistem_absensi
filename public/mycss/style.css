@@ -1,0 +1,9 @@
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+.foto {
+    width: 80px;
+}
+.fotoDetail {
+    width: 150px;
+}

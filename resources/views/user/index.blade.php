@@ -28,9 +28,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>
                                     @if ($value->foto)
-                                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
+                                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" class="foto">
                                     @else
-                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="80" height="100">
+                                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" class="foto">
                                     @endif
 
                                 </td>

@@ -7,24 +7,22 @@
             <h5 class="card-header bg-transparent border-bottom mt-0"> Detail Data Absensi </h5>
             <div class="card-body">
                 <table class="table table-striped">
+                    <div class="mb-3 float-left">
+                        @if ($absensi_data->foto)
+                        <img src="{{ asset('storage/absensi/' . $absensi_data->foto) }}" alt="{{ $absensi_data->name }}" class="fotoDetail">
+                        @else
+                        <img src="{{ asset('img/not-found.png' . $absensi_data->foto) }}" alt="{{ $absensi_data->name }}" class="fotoDetail">
+                        @endif
+                    </div>
                     <tr>
                         <td width="20%"><b>Nama Karyawan</b></td>
                         <td>{{ $absensi_data->user->name }}</td>
                     </tr>
                     <tr>
                         <td width="20%"><b>Jenis</b></td>
-                        <td>{{ $absensi_data->jenis }}</td>
+                        <td>{{ $absensi_data->jenis == 1 ? 'masuk' : 'pulang' }}</td>
                     </tr>
-                    <tr>
-                        <td width="20%"><b>Foto</b></td>
-                        <td>
-                            @if ($value->foto)
-                            <img src="{{ asset('storage/absensi/' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
-                            @else
-                            <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" width="70" height="100">
-                            @endif</td>
-                        </td>
-                    </tr>
+
                     <tr>
                         <td width="20%"><b>Latitude</b></td>
                         <td>{{ $absensi_data->latitude }}</td>
