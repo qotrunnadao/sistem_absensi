@@ -35,7 +35,10 @@
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <button class="btn btn-primary" value="" onClick="take_snapshot()">masuk</button>
                             <input type="hidden" name="image" class="image-tag">
-                            <button type="button" class="btn btn-danger" value="" onClick="take_snapshot()">pulang</button>
+                            <div class="btn-group">
+                                <a href="{{ route('absensi.pulang') }}" class="btn btn-danger" onClick="take_snapshot()">Pulang</a>
+                            </div>
+                            {{-- <button type="button" class="btn btn-danger" value="{{ $absensi->jenis }}" onClick="take_snapshot()">pulang</button> --}}
                             <input type="hidden" name="image" class="image-tag">
                         </form>
                     </div>

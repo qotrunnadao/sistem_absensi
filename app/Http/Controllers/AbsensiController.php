@@ -134,4 +134,13 @@ class AbsensiController  extends Controller
             ),
         );
     }
+    public function pulang(Absensi $absensi)
+    {
+        $data = array(
+            'jenis' => 2,
+        );
+        $absensi->update($data);
+        Alert::success('Berhasil', 'Berhasil tambah data Absensi');
+        return redirect('/dashboard');
+    }
 }

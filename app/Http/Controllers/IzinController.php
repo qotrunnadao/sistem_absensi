@@ -131,6 +131,24 @@ class IzinController  extends Controller
         Alert::success('Berhasil', 'Berhasil hapus data Izin');
         return redirect('/izin');
     }
+    public function diterima(Izin $izin)
+    {
+        $data = array(
+            'status' => 1,
+        );
+        $izin->update($data);
+        Alert::success('Berhasil', 'Pengajuan Izin Diterima');
+        return redirect('/izin');
+    }
+    public function ditolak(Izin $izin)
+    {
+        $data = array(
+            'status' => 2,
+        );
+        $izin->update($data);
+        Alert::warning('Berhasil', 'Pengajuan Izin Ditolak');
+        return redirect('/izin');
+    }
 }
 
 /* End of file IzinController.php */

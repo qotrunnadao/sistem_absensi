@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     // route untuk Absensi
     Route::get('absensi', [AbsensiController::class, 'index']);
     Route::get('absensi/data', [AbsensiController::class, 'data_json'])->name('absensi.data');
-    Route::get('absensi/create', [AbsensiController::class, 'create']);
+    Route::get('absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
     Route::post('absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
     Route::get('absensi/edit/{id}', [AbsensiController::class, 'edit']);
     Route::put('absensi/update/{id}', [AbsensiController::class, 'update']);
@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
     Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
+    Route::get('absensi/pulang', [AbsensiController::class, 'pulang'])->name('absensi.pulang');
 
 
 
@@ -58,6 +59,8 @@ Route::middleware('auth')->group(function () {
     // Route::get('izin/edit', [IzinController::class, 'edit']);
     // Route::put('izin/update', [IzinController::class, 'update']);
     Route::get('izin/delete', [IzinController::class, 'destroy']);
+    Route::get('izin/diterima', [IzinController::class, 'diterima'])->name('izin.diterima');
+    Route::get('izin/ditolak', [IzinController::class, 'ditolak'])->name('izin.ditolak');
     // Route::get('izin/cari', [IzinController::class, 'cari']);
     // Route::get('izin/show/{id}', [IzinController::class, 'show']);
     Route::resource('izin', IzinController::class);
