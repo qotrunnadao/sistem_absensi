@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Izin;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Models\Absensi;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AbsensiController  extends Controller
 {
@@ -21,31 +22,9 @@ class AbsensiController  extends Controller
         return view('absensi/indexAbsensi', compact('absensi'));
     }
 
-    // public function data_json(Request $request)
-    // {
-    //     if ($request->ajax()) {
-    //         $data =  Absensi::with('user')->latest()->get();
-    //         return Datatables::of($data)
-    //             ->addIndexColumn()
-    //             ->addColumn('action', function ($row) {
-    //                 $id = $row['id'];
-    //                 $btn = "<a href='absensi/show/$id' class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>";
-    //                 return $btn;
-    //             })
-    //             ->rawColumns(['action'])
-    //             ->make(true);
-    //     }
-    // }
-
-    // public function create()
-    // {
-    //     return view('absensi/createAbsensi', ['action' => url('absensi/store'), 'button' => 'Tambah']);
-    // }
-
     public function store(Request $request)
     {
-
-
+        // dd($request);
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
@@ -55,15 +34,8 @@ class AbsensiController  extends Controller
         $data = $request->all();
 
         Storage::disk('public')->put('absensi/' . $fileName, $image_base64);
-
-        // $this->validate($request, [
-        //     'user_id' => 'required|max:100',
-        //     'jenis' => 'required|max:100',
-        //     'foto' => 'required|max:100',
-        //     'latitude' => 'required|max:100',
-        //     'longitude' => 'required|max:100',
-        // ]);
         $data['foto'] = $fileName;
+
         Absensi::create($data);
         Alert::success('Berhasil', 'Berhasil tambah data Absensi');
         return redirect('/dashboard');
@@ -82,6 +54,9 @@ class AbsensiController  extends Controller
 
         $absensi = Absensi::find($id);
 
+        // hapus foto
+        unlink(storage_path('app/public/absensi/') . $absensi['foto']);
+
         $absensi->delete();
         // alihkan halaman ke halaman Absensi
         Alert::success('Berhasil', 'Berhasil hapus data Absensi');
@@ -95,24 +70,16 @@ class AbsensiController  extends Controller
 
     public function cetakabsensi($dari, $sampai)
     {
-        // dd(["dari :" . $dari, "sampai :" . $sampai]);
         $cetakabsensi = Absensi::with('user')->whereBetween('created_at', [$dari, $sampai])->get();
+        $izin = Izin::with('user')->where('status', 1)->get();
         return view(
             'absensi.cetakabsensi',
             compact(
                 'cetakabsensi',
                 'dari',
-                'sampai'
+                'sampai',
+                'izin',
             ),
         );
-    }
-    public function pulang(Absensi $absensi)
-    {
-        $data = array(
-            'jenis' => 2,
-        );
-        $absensi->update($data);
-        Alert::success('Berhasil', 'Berhasil tambah data Absensi');
-        return redirect('/dashboard');
     }
 }

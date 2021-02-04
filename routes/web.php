@@ -30,8 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 
 
-
-    // route untuk Absensi
+    // route untuk Absensiphp
     Route::get('absensi', [AbsensiController::class, 'index']);
     Route::get('absensi/data', [AbsensiController::class, 'data_json'])->name('absensi.data');
     Route::get('absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
@@ -46,7 +45,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
     Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
-    Route::get('absensi/pulang', [AbsensiController::class, 'pulang'])->name('absensi.pulang');
+
 
 
 

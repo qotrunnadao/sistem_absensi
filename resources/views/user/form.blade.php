@@ -61,12 +61,20 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="foto">Foto</label>
                         <div class="col-md-2">
-                            <img src="{{ asset('img/not-found.png') }}" class="img-thumbnail img-preview">
+                            @if($button == 'Tambah')
+                            <img src="{{ asset('img/not-found.png') }}" class="img-thumbnail img-preview" alt="{{ $user->name }}">
+                            @else
+                            <img src="public/storage/fotouser/<?= $user->foto; ?>" class="img-thumbnail img-preview" alt="{{ $user->name }}">
+                            @endif
                         </div>
                         <div class="col-md-4">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="foto" name="foto" onchange="previewImg()" value="@if ($button == 'Tambah'){{ old('foto') }}@else{{ $user->foto }}@endif"/>
+                                <input type="file" class="custom-file-input" id="foto" name="foto" onchange="previewImg()">
+                                @if($button == 'Tambah')
                                 <label class="custom-file-label" for="foto">Pilih File</label>
+                                @else
+                                <label class="custom-file-label" for="foto"><?= $user->foto; ?></label>
+                                @endif
                             </div>
                         </div>
                     </div>

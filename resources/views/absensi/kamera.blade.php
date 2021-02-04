@@ -32,14 +32,10 @@
                         <form method="POST" id="form_kirim" action="{{ route('absensi.store') }}" class="col-md-12">
                             @csrf
                             <div class="" id="my_camera"></div>
+                            <input type="hidden" name="image" class="image-tag">
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                            <button class="btn btn-primary" value="" onClick="take_snapshot()">masuk</button>
-                            <input type="hidden" name="image" class="image-tag">
-                            <div class="btn-group">
-                                <a href="{{ route('absensi.pulang') }}" class="btn btn-danger" onClick="take_snapshot()">Pulang</a>
-                            </div>
-                            {{-- <button type="button" class="btn btn-danger" value="{{ $absensi->jenis }}" onClick="take_snapshot()">pulang</button> --}}
-                            <input type="hidden" name="image" class="image-tag">
+                            <button type="submit" class="btn btn-primary" value="1" name="jenis" onClick="take_snapshot()">masuk</button>
+                            <button type="submit" class="btn btn-danger" name="jenis" value="2" onClick="take_snapshot()">pulang</button>
                         </form>
                     </div>
                 </div>
@@ -58,6 +54,12 @@
     Webcam.attach('#my_camera');
 
     function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            $(".image-tag").val(data_uri);
+            $("#form_kirim").submit();
+        });
+    }
+    function take_snapshot1() {
         Webcam.snap(function(data_uri) {
             $(".image-tag").val(data_uri);
             $("#form_kirim").submit();

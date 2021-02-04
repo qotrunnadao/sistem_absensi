@@ -62,32 +62,17 @@
                                         <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
                                     </form>
                                 </td>
-
-
-                                {{-- <div class="btn-group">
-                                        <a href="{{ route('izin.show', $value->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                </div>
-                <div class="btn-group">
-                    <a href="{{ route('izin.edit', $value->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                </div>
-                <div class="btn-group"> --}}
-                    {{--  --}}
-                </div>
-                </td>
-                </tr>
-                @endforeach
-                </tbody>
-                <tr>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
         </div>
     </div>
-
-</div>
-</div>
-<script>
-    $(document).ready(function(){
+    <script>
+        $(document).ready(function(){
                $('#table-Izin').DataTable();
            });
            $(document).ready(function() {
@@ -110,10 +95,10 @@
                 })
             });
         });
-</script>
+    </script>
 
-@endsection
-{{-- </table>
+    @endsection
+    {{-- </table>
 </div>
 </div>
 </div>
@@ -128,55 +113,55 @@
             serverSide: true,
             responsive: true,
             ajax: "{{ route('izin.data') }}",
-columns: [
-{
-"data": "DT_RowIndex"
-},
+    columns: [
+    {
+    "data": "DT_RowIndex"
+    },
 
-{
-"data": "user.name"
-},
-{
-"data": "keterangan"
-},
-{
-"data": "tgl_mulai"
-},
-{
-"data": "tgl_berakhir"
-},
-{
-"data": "status"
-},
+    {
+    "data": "user.name"
+    },
+    {
+    "data": "keterangan"
+    },
+    {
+    "data": "tgl_mulai"
+    },
+    {
+    "data": "tgl_berakhir"
+    },
+    {
+    "data": "status"
+    },
 
-{
-"data" : "action",
-"orderable": false,
-"className" : "text-center"
-},
+    {
+    "data" : "action",
+    "orderable": false,
+    "className" : "text-center"
+    },
 
-],
-});
-$(document).ready(function() {
-$("#table-izin").on('click','.hapus', function(e) {
-e.preventDefault();
-var form = $(this).parents('form');
-Swal.fire({
-title: 'Konfirmasi',
-text: 'Apakah anda yakin menghapus data ini?',
-icon: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Ya, Hapus!',
-cancelButtonText: 'Batal'
-}).then((result) => {
-if (result.value) {
-form.submit();
-}
-})
-});
-});
+    ],
+    });
+    $(document).ready(function() {
+    $("#table-izin").on('click','.hapus', function(e) {
+    e.preventDefault();
+    var form = $(this).parents('form');
+    Swal.fire({
+    title: 'Konfirmasi',
+    text: 'Apakah anda yakin menghapus data ini?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, Hapus!',
+    cancelButtonText: 'Batal'
+    }).then((result) => {
+    if (result.value) {
+    form.submit();
+    }
+    })
+    });
+    });
 
-</script>
-@endsection --}}
+    </script>
+    @endsection --}}

@@ -26,6 +26,11 @@
         </div>
         <hr color="#000000">
 
+        <ul class="ml-3">
+            <li>Dari Tanggal : <b>{{ $dari }}</b></li>
+            <li>Sampai Tanggal : <b>{{ $sampai }}</b></li>
+        </ul>
+        <p class="float-right  mr-4">jumlah Izin : {{ $izin->count() }}</p>
 
         <table class="table table-bordered" align="center" border="1px" style="width:95% ">
             <thead>
@@ -35,7 +40,7 @@
                     <th>Jenis</th>
                     <th>Latitude</th>
                     <th>Longitude</th>
-                    <th>Waktu</th>
+                    <th>Waktu Absensi</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +56,7 @@
                 </tr>
                 @endforeach
         </table>
+        <p class="float-right mr-4 mt-5">Banyumas, {{ date('d F Y ') }}</p>
     </div>
     </div>
 </body>

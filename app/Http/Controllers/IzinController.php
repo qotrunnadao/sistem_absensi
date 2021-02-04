@@ -25,22 +25,6 @@ class IzinController  extends Controller
         return view('izin/indexIzin', $data);
     }
 
-    // public function data_json(Request $request)
-    // {
-    //     if ($request->ajax()) {
-    //         $data =  Izin::with('user')->latest()->get();
-    //         return Datatables::of($data)
-    //             ->addIndexColumn()
-    //             ->addColumn('action', function ($row) {
-    //                 $id = $row['id'];
-    //                 $btn = "<a href='izin/delete/$id' class='delete btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></a>";
-    //                 return $btn;
-    //             })
-    //             ->rawColumns(['action'])
-    //             ->make(true);
-    //     }
-    // }
-
     public function create()
     {
         $data = [
@@ -125,8 +109,8 @@ class IzinController  extends Controller
 
     public function destroy($id)
     {
-        $izin = Izin::where('id', $id)->firstOrFail();
-        // $izin = Izin::find($id);
+
+        $izin = Izin::find($id);
         $izin->delete();
         // alihkan halaman ke halaman Izin
         Alert::success('Berhasil', 'Berhasil hapus data Izin');
@@ -151,6 +135,3 @@ class IzinController  extends Controller
         return redirect('/izin');
     }
 }
-
-/* End of file IzinController.php */
-/* Location: ./app/Http/Controllers/IzinController.php */

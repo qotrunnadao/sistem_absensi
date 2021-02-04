@@ -45,9 +45,6 @@ class UserController extends Controller
             $data['foto'] = NULL;
         }
 
-        //Upload Foto
-        // $filename = time() . '.png';
-        // request()->foto->store('fotoUser', 'public', $filename);
         //mengubah password menjadi bycript
         $data['password'] = bcrypt($data['password']);
 
@@ -78,6 +75,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         $data = $request->all();
+
         if ($request->file('foto')) {
             $image = $request->file('foto');
             $image_name = time() . '.' . $image->getClientOriginalExtension();
@@ -85,13 +83,16 @@ class UserController extends Controller
 
             $data['foto'] = $image_name;
         } else {
-            $data['foto'] = NULL;
+            $data['foto'] = $user->foto;
         }
+
+
         if ($data['password']) {
             $data['password'] = bcrypt($data['password']);
         } else {
             $data['password'] = $user->password;
         }
+
         $user->update($data);
         Alert::success('Berhasil', 'Berhasil Edit Data User');
 
@@ -100,6 +101,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        // hapus foto
+        unlink(storage_path('app/public/fotouser/') . $user['foto']);
+
         $user->delete();
         Alert::success('Berhasil', 'Berhasil Hapus Data User');
         return redirect(route('user.index'));
