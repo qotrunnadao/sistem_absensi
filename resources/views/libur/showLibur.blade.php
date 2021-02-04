@@ -5,7 +5,6 @@
     <div class="col-md-12">
         <div class="callout callout-danger">
             <h5>Libur {{ $libur_data->nama_libur }}</h5>
-
             <p>{{ $libur_data->keterangan }} <br>
                 {{ $libur_data->tanggal }}</p>
         </div>

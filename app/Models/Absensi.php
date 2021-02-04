@@ -39,9 +39,3 @@ class Absensi extends Model
     //     }
     // }
 }
-
-
-/* End of file Absensi.php */
-/* Location: ./app/Models/Absensi.php */
-/* Created at 2021-01-23 15:25:56 */
-/* Mohammad Irham Akbar Laravel 8 CRUD Generator : */

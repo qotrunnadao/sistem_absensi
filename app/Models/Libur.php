@@ -24,9 +24,3 @@ class Libur extends Model
         return Carbon::parse($this->attributes['updated_at'])->translatedFormat('d F Y H:i:s');
     }
 }
-
-
-/* End of file Libur.php */
-/* Location: ./app/Models/Libur.php */
-/* Created at 2021-01-22 08:54:20 */
-/* Mohammad Irham Akbar Laravel 8 CRUD Generator : */

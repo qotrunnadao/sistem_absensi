@@ -1,41 +1,6 @@
 @extends('layouts.app')
 @section('title','Data User')
 @section('content')
-{{-- <div class="card card-info card-outline mb-3 col-md-8">
-    <div class="card-header"><strong>Detail User</strong></div>
-    <div class="row g-0">
-        <div class="col-md-6">
-            <div class="card-body">
-                <img class="img-fluid pad" src={{ asset("adminlte/dist/img/avatar2.png") }} alt="Photo">
-</div>
-</div>
-<div class="col">
-    <div class="card-body">
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <td><strong>Nama</strong></td>
-                    <td> {{ $user->name }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Email</strong></td>
-                    <td> {{ $user->email }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Level</strong></td>
-                    <td> {{ $user->level == 0 ? 'admin' : 'karyawan'}}</td>
-                </tr>
-        </table>
-        <div class="btn-group my-3">
-            <a href="{{ route('user.index') }}" class="btn btn-primary">kembali</a>
-        </div>
-    </div>
-
-</div>
-
-</div>
-</div> --}}
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">

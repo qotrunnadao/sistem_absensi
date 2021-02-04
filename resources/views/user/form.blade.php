@@ -6,13 +6,9 @@
         <div class="card card-outline card-info">
             <h5 class="card-header bg-transparent border-bottom mt-0"> {{$button}} Data User </h5>
             <div class="card-body">
-                {{-- <form action="{{$action}}@if($button == 'Edit')/{{ $user->id}}@endif" method="post" style="padding:10px;">
-                {{ csrf_field() }}
-                @if ($button == 'Edit'){{ method_field('PUT') }}@endif --}}
                 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                     @if ($button =='Edit')@method('PATCH')@endif
                     @csrf
-
                     <div class="form-group row">
                         <label class="col-md-2" for="varchar">Nama</label>
                         <div class="col-md-6">
@@ -22,7 +18,6 @@
                                 {{ $errors->first('name') }}
                             </div>
                             @endif
-
                         </div>
                     </div>
                     <div class="form-group row">
@@ -57,7 +52,6 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="foto">Foto</label>
                         <div class="col-md-2">

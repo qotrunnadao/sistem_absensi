@@ -9,7 +9,6 @@
                 <form action="{{$action}}@if($button == 'Edit')/{{ $libur_data->id}}@endif" method="post" style="padding:10px;">
                     {{ csrf_field() }}
                     @if ($button == 'Edit'){{ method_field('PUT') }}@endif
-
                     <div class="form-group row">
                         <label class="col-md-2" for="varchar">Nama Libur</label>
                         <div class="col-md-6">
@@ -19,7 +18,6 @@
                                 {{ $errors->first('nama_libur') }}
                             </div>
                             @endif
-
                         </div>
                     </div>
                     <div class="form-group row">
@@ -35,7 +33,6 @@
                                     {{ $errors->first('tanggal') }}
                                 </div>
                                 @endif
-
                             </div>
                         </div>
                     </div>
@@ -48,12 +45,10 @@
                                 {{ $errors->first('keterangan') }}
                             </div>
                             @endif
-
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-2">
-
                             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?= $button ?></button>
                             <a href="<?= url('') ?>/libur" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
                         </div>

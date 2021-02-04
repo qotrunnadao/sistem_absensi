@@ -5,7 +5,6 @@
     <div class="col-md-12">
         <div class="card card-outline card-info">
             <h5 class="card-header bg-transparent border-bottom mt-0"> Data User </h5>
-            <!-- /.card-header -->
             <div class="card-body">
                 <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
                 <div class="table-responsive mt-3">
@@ -61,7 +60,6 @@
                     </table>
                 </div>
             </div>
-            <!-- /.card-body -->
         </div>
     </div>
 </div>

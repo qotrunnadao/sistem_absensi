@@ -15,8 +15,6 @@
                                 <th>Nama Libur</th>
                                 <th>Tanggal</th>
                                 <th>Keterangan</th>
-                                {{-- <th>Created At</th>
-                                <th>Updated At</th> --}}
                                 <th class="text-center" width="15%">Aksi</th>
                             </tr>
                         </thead>
@@ -49,12 +47,6 @@
 									{
 										"data": "keterangan"
 									},
-									// {
-									// 	"data": "created_at"
-									// },
-									// {
-									// 	"data": "updated_at"
-									// },
                 {
                     "data" : "action",
                     "orderable": false,

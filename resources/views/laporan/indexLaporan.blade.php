@@ -27,13 +27,9 @@
                     <button type="submit" name="action" value="absendinaspeg" class="btn btn-md btn-hover color-10 kotakbt print-button" formtarget="_blank"><span class="print-icon"></span>dinas</button>
 
                     <button type="submit" name="action" value="printlkh" class="btn btn-md btn-hover color-11 kotakbt print-button" formtarget="_blank"><span class="print-icon"></span><br>LKH</button>
-
-
+                </div>
             </form>
         </div>
-
     </div>
-    <!-- /.card-body -->
 </div>
-<!-- /.card -->
 @endsection

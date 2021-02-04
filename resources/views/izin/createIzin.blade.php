@@ -89,11 +89,9 @@
                 <div class="callout callout-info">
                     <p>Pengajuan yang <span class="badge-warning badge">pending</span> dan <span class="badge-danger badge">ditolak</span> akan terhapus otomatis bila sudah melewati 15 hari sejak tanggal pengajuan.</p>
                 </div>
-
                 <!-- /.card-body -->
             </div>
         </div>
-
     </div>
 </div>
 

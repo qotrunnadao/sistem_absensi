@@ -71,8 +71,9 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
+</div>
+<script>
+    $(document).ready(function(){
                $('#table-Izin').DataTable();
            });
            $(document).ready(function() {
@@ -95,73 +96,5 @@
                 })
             });
         });
-    </script>
-
-    @endsection
-    {{-- </table>
-</div>
-</div>
-</div>
-</div>
-</div>
+</script>
 @endsection
-@section('javascripts')
-<script>
-    var table = $("#table-Izin").DataTable({
-            pageLength: 10,
-            processing: true,
-            serverSide: true,
-            responsive: true,
-            ajax: "{{ route('izin.data') }}",
-    columns: [
-    {
-    "data": "DT_RowIndex"
-    },
-
-    {
-    "data": "user.name"
-    },
-    {
-    "data": "keterangan"
-    },
-    {
-    "data": "tgl_mulai"
-    },
-    {
-    "data": "tgl_berakhir"
-    },
-    {
-    "data": "status"
-    },
-
-    {
-    "data" : "action",
-    "orderable": false,
-    "className" : "text-center"
-    },
-
-    ],
-    });
-    $(document).ready(function() {
-    $("#table-izin").on('click','.hapus', function(e) {
-    e.preventDefault();
-    var form = $(this).parents('form');
-    Swal.fire({
-    title: 'Konfirmasi',
-    text: 'Apakah anda yakin menghapus data ini?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Ya, Hapus!',
-    cancelButtonText: 'Batal'
-    }).then((result) => {
-    if (result.value) {
-    form.submit();
-    }
-    })
-    });
-    });
-
-    </script>
-    @endsection --}}
