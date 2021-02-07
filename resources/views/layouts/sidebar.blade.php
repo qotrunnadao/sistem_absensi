@@ -19,7 +19,8 @@
                 <span class="badge badge-success">{{ Auth::user()->level == 0 ? 'Admin' : 'Karyawan' }}</span>
             </div>
         </div>
-        <!-- Sidebar Menu -->
+        @if (Auth::user()->level == 0)
+        <!-- Sidebar Menu Admin-->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 {{-- Dashboard --}}
@@ -81,7 +82,57 @@
                 {{-- End Dashboard --}}
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
+
+        @elseif(Auth::user()->level == 1)
+        <!-- Sidebar Menu Karyawan-->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="<?= url('') ?>/dashboard" class="nav-link {{ active_menu(1,'dashboard') }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview {{ menu_open(1,'absensi') }}  {{ menu_open(1,'izin') }} {{ menu_open(1, 'pengajuan') }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-folder"></i>
+                        <p>
+                            Absensi
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?=url('')?>/absensi" class="nav-link {{ active_menu(1,'absensi') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Absensi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?=url('')?>/izin" class="nav-link {{ active_menu(1,'izin') }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pengajuan Izin</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
+                        <i class="nav-icon fas fa-camera"></i>
+                        <p>Kamera</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?=url('') ?>/formcetak" class="nav-link {{ active_menu(1,'laporan') }}">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p>Cetak Laporan</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        @endif
+
+
     </div>
     <!-- /.sidebar -->
 </aside>

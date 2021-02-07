@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="col-md-12">
+    @if (Auth::user()->level == 1)
     <div class="card card-widget widget-user">
         <div class="widget-user-header">
             <h5 class="widget-user-username">Selamat Datang di Sistem Absensi Karyawan</h5>
@@ -19,7 +20,7 @@
         </div>
     </div>
 </div>
-<!-- Info boxes -->
+@else
 <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
@@ -29,11 +30,8 @@
                 <span class="info-box-text">Karyawan Masuk</span>
                 <span class="info-box-number">{{ $masuk->count() }}</span>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
             <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-house-user"></i></span>
@@ -42,13 +40,8 @@
                 <span class="info-box-text">Karyawan Pulang</span>
                 <span class="info-box-number">{{ $pulang->count() }}</span>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
-
-    <!-- fix for small devices only -->
     <div class="clearfix hidden-md-up"></div>
 
     <div class="col-12 col-sm-6 col-md-3">
@@ -59,11 +52,8 @@
                 <span class="info-box-text">Karyawan Izin</span>
                 <span class="info-box-number">{{ $izin->count() }}</span></span>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -72,11 +62,10 @@
                 <span class="info-box-text">Total karyawan</span>
                 <span class="info-box-number">{{ $user->count() }}</span>
             </div>
-            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
 </div>
-<!-- /.row -->
+@endif
+
+
 @endsection
