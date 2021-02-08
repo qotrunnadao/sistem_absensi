@@ -18,25 +18,28 @@ class LiburController  extends Controller
 
     public function index()
     {
-        return view('libur/indexLibur');
+        $data = array(
+            'libur_data' => Libur::latest()->get(),
+        );
+        return view('libur/indexLibur', $data);
     }
 
-    public function data_json(Request $request)
-    {
-        if ($request->ajax()) {
-            $data =  Libur::latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $id = $row['id'];
-                    $btn = "<a href='libur/show/$id' class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>
-                    <a href='libur/edit/$id' class='edit btn btn-warning btn-sm'><i class='fa fa-edit'></i></a> <a href='libur/delete/$id' class='delete btn btn-danger btn-sm'><i class='fa fa-trash-alt'></i></a>";
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-    }
+    // public function data_json(Request $request)
+    // {
+    //     if ($request->ajax()) {
+    //         $data =  Libur::latest()->get();
+    //         return Datatables::of($data)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', function ($row) {
+    //                 $id = $row['id'];
+    //                 $btn = "<a href='libur/show/$id' class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>
+    //                 <a href='libur/edit/$id' class='edit btn btn-warning btn-sm'><i class='fa fa-edit'></i></a> <a href='libur/delete/$id' class='delete btn btn-danger btn-sm'><i class='fa fa-trash-alt'></i></a>";
+    //                 return $btn;
+    //             })
+    //             ->rawColumns(['action'])
+    //             ->make(true);
+    //     }
+    // }
 
     public function create()
     {

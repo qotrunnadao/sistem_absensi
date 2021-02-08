@@ -7,7 +7,7 @@
         <div class="card card-outline card-info">
             <h5 class="card-header bg-transparent border-bottom mt-0"> Data Izin </h5>
             <div class="card-body">
-                {{-- <a href="izin/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a> --}}
+                <a href="izin/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
                 <div class="table-responsive mt-3">
                     <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Izin">
                         <thead>
@@ -89,6 +89,7 @@
                                 <th>Tgl Mulai</th>
                                 <th>Tgl Berakhir</th>
                                 <th>Status</th>
+                                <th>Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,6 +109,13 @@
                                 @else
                                 <span class="badge badge-danger">Ditolak</span></td>
                                 @endif
+                                <td>
+                                    <form action="{{ route('izin.destroy', $value->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

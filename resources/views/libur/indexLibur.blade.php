@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','Data Libur')
 @section('content')
+@if (Auth::user()->level == 0)
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
@@ -18,42 +19,77 @@
                                 <th class="text-center" width="15%">Aksi</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @php ($no = 1)
+                            @foreach ($libur_data as $value)
+                            <tr class="text-center">
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $value->nama_libur }}</td>
+                                <td>{{ $value->tanggal }}</td>
+                                <td>{{ $value->keterangan }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('libur.show', $value->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="{{ route('libur.edit', $value->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                    </div>
+
+                                    <div class="btn-group">
+                                        <form action="{{ route('libur.destroy', $value->id) }}" method="GET">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@elseif(Auth::user()->level == 1)
+<div class="col-md-12">
+    @foreach ($libur_data as $value)
+    <div class="callout callout-danger">
+
+        <h5>Libur {{ $value->nama_libur }}</h5>
+        <p>{{ $value->keterangan }} <br>
+            {{ $value->tanggal }}</p>
+
+    </div>
+    @endforeach
+</div>
+@endif
 @endsection
 @section('javascripts')
 <script>
-    var table = $("#table-Libur").DataTable({
-            pageLength: 10,
-            processing: true,
-            serverSide: true,
-            responsive: true,
-            ajax: "{{ route('libur.data') }}",
-            columns: [
-                                    {
-                                        "data": "DT_RowIndex"
-                                    },
-
-									{
-										"data": "nama_libur"
-									},
-									{
-										"data": "tanggal"
-									},
-									{
-										"data": "keterangan"
-									},
-                {
-                    "data" : "action",
-                    "orderable": false,
-                    "className" : "text-center"
-                },
-
-            ],
+    $(document).ready(function(){
+               $('#table-Libur').DataTable();
+           });
+           $(document).ready(function() {
+            $("#table-Libur").on('click','.hapus', function(e) {
+                e.preventDefault();
+                var form = $(this).parents('form');
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: 'Apakah anda yakin menghapus data ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                        form.submit();
+                    }
+                })
+            });
         });
 </script>
 @endsection

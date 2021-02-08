@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('user', UserController::class);
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('user/profil', [UserController::class, 'profil'])->name('user.profil');
 
 
     // route untuk Absensiphp
@@ -72,11 +73,11 @@ Route::middleware('auth')->group(function () {
     Route::get('libur/data', [LiburController::class, 'data_json'])->name('libur.data');
     Route::get('libur/create', [LiburController::class, 'create']);
     Route::post('libur/store', [LiburController::class, 'store']);
-    Route::get('libur/edit/{id}', [LiburController::class, 'edit']);
-    Route::put('libur/update/{id}', [LiburController::class, 'update']);
-    Route::get('libur/delete/{id}', [LiburController::class, 'delete']);
+    Route::get('libur/edit/{id}', [LiburController::class, 'edit'])->name('libur.edit');
+    Route::put('libur/update/{id}', [LiburController::class, 'update'])->name('libur.update');
+    Route::get('libur/delete/{id}', [LiburController::class, 'delete'])->name('libur.destroy');
     Route::get('libur/cari', [LiburController::class, 'cari']);
-    Route::get('libur/show/{id}', [LiburController::class, 'show']);
+    Route::get('libur/show/{id}', [LiburController::class, 'show'])->name('libur.show');
 });
 
 

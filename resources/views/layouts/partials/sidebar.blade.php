@@ -13,7 +13,7 @@
                 <img src="{{ asset('adminlte/dist/img/user4-128x128.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('user.profil') }}" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
         <!-- /.user panel -->

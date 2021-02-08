@@ -58,7 +58,7 @@
                             @if($button == 'Tambah')
                             <img src="{{ asset('img/not-found.png') }}" class="img-thumbnail img-preview" alt="{{ $user->name }}">
                             @else
-                            <img src="public/storage/fotouser/<?= $user->foto; ?>" class="img-thumbnail img-preview" alt="{{ $user->name }}">
+                            <img src="{{ asset('storage/fotouser/' . $user->foto) }}" alt="{{ $user->name }}" class="img-thumbnail img-preview">
                             @endif
                         </div>
                         <div class="col-md-4">

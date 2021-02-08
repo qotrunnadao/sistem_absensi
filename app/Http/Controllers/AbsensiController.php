@@ -6,6 +6,7 @@ use App\Models\Izin;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,6 +19,7 @@ class AbsensiController  extends Controller
 
     public function index()
     {
+        $absensi = Auth::user()->id;
         $absensi = Absensi::with('user')->latest()->get();
         return view('absensi/indexAbsensi', compact('absensi'));
     }

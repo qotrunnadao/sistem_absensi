@@ -20,6 +20,14 @@ class UserController extends Controller
         return view('user.index', $data);
     }
 
+    public function profil()
+    {
+        $data = array(
+            'data_user' => User::latest()->get(),
+        );
+        return view('user.profil', $data);
+    }
+
 
     public function create()
     {

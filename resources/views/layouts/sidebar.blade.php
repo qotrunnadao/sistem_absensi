@@ -15,7 +15,7 @@
 
             </div>
             <div class="info">
-                <a href="" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('user.profil') }}" class="d-block">{{ Auth::user()->name }}</a>
                 <span class="badge badge-success">{{ Auth::user()->level == 0 ? 'Admin' : 'Karyawan' }}</span>
             </div>
         </div>
@@ -117,15 +117,15 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
-                        <i class="nav-icon fas fa-camera"></i>
-                        <p>Kamera</p>
+                    <a href="<?=url('')?>/libur" class="nav-link {{ active_menu(1,'libur') }}">
+                        <i class="nav-icon fas fa-calendar"></i>
+                        <p>Hari Libur</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?=url('') ?>/formcetak" class="nav-link {{ active_menu(1,'laporan') }}">
-                        <i class="nav-icon fas fa-print"></i>
-                        <p>Cetak Laporan</p>
+                    <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
+                        <i class="nav-icon fas fa-camera"></i>
+                        <p>Absen</p>
                     </a>
                 </li>
             </ul>
