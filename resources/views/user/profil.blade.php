@@ -9,15 +9,15 @@
         <div class="card-body pt-0">
             <div class="row">
                 <div class="col-7">
-                    <h2 class="lead"><b>{{ $data_user->name }}</b></h2>
+                    <h2 class="lead"><b>{{ $user->name }}</b></h2>
                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>{{ $data_user->email }}</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> {{ $data_user->level }}</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>{{ $data_user->created_at }}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>{{ $user->email }}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> {{ $user->level }}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>{{ $user->created_at }}</li>
                     </ul>
                 </div>
                 <div class="col-5 text-center">
-                    <img src="{{ asset('storage/userfoto/<?= $data_user->foto; ?>') }}" alt="" class="img-circle img-fluid">
+                    <img src="{{ asset('storage/userfoto/<?= $user->foto; ?>') }}" alt="{{ $user->name }}" class="img-circle img-fluid">
                 </div>
             </div>
         </div>

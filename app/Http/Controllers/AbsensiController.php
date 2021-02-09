@@ -6,6 +6,7 @@ use App\Models\Izin;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -26,7 +27,6 @@ class AbsensiController  extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
@@ -83,5 +83,11 @@ class AbsensiController  extends Controller
                 'izin',
             ),
         );
+    }
+
+    public function kamera(Request $request)
+    {
+        $data = Absensi::with('user')->latest()->get();
+        return view('absensi.kamera', compact('data'));
     }
 }

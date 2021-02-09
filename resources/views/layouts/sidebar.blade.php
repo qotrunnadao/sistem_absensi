@@ -15,7 +15,7 @@
 
             </div>
             <div class="info">
-                <a href="{{ route('user.profil') }}" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('user.show', Auth::user()->id) }}" class="d-block">{{ Auth::user()->name }}</a>
                 <span class="badge badge-success">{{ Auth::user()->level == 0 ? 'Admin' : 'Karyawan' }}</span>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 {{-- Dashboard --}}
                 <li class="nav-item">
-                    <a href="<?= url('') ?>/dashboard" class="nav-link {{ active_menu(1,'dashboard') }}">
+                    <a href="<?=url('')?>/dashboard" class="nav-link {{ active_menu(1,'dashboard') }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Home</p>
                     </a>

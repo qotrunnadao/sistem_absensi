@@ -168,6 +168,7 @@ return [
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Ixudra\Curl\CurlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Curl' => Ixudra\Curl\Facades\Curl::class,
     ],
 
 ];

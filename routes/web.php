@@ -26,12 +26,14 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // route untuk user
     Route::resource('user', UserController::class);
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
     Route::get('user/profil', [UserController::class, 'profil'])->name('user.profil');
+    Route::get('get-curl', [UserController::class, 'getCRUL']);
 
 
-    // route untuk Absensiphp
+    // route untuk Absensi
     Route::get('absensi', [AbsensiController::class, 'index']);
     Route::get('absensi/data', [AbsensiController::class, 'data_json'])->name('absensi.data');
     Route::get('absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
@@ -41,9 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('absensi/delete/{id}', [AbsensiController::class, 'delete'])->name('absensi.delete');
     Route::get('absensi/cari', [AbsensiController::class, 'cari']);
     Route::get('absensi/show/{id}', [AbsensiController::class, 'show'])->name('absensi.show');
-    Route::get('absensi/kamera', function () {
-        return view('absensi.kamera');
-    });
+    Route::get('absensi/kamera', [AbsensiController::class, 'kamera']);
     Route::get('/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
     Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
 
@@ -51,24 +51,14 @@ Route::middleware('auth')->group(function () {
 
 
     // route untuk Izin
-
-    // Route::get('izin', [IzinController::class, 'index']);
-    // Route::get('izin/data', [IzinController::class, 'data_json'])->name('izin.data');
-    // Route::get('izin/create', [IzinController::class, 'create']);
     Route::post('izin/store', [IzinController::class, 'store']);
-    // Route::get('izin/edit', [IzinController::class, 'edit']);
-    // Route::put('izin/update', [IzinController::class, 'update']);
     Route::get('izin/delete/{id}', [IzinController::class, 'destroy'])->name('izin.destroy');
     Route::get('izin/diterima/{izin}', [IzinController::class, 'diterima'])->name('izin.diterima');
     Route::get('izin/ditolak/{izin}', [IzinController::class, 'ditolak'])->name('izin.ditolak');
-    // Route::get('izin/cari', [IzinController::class, 'cari']);
-    // Route::get('izin/show/{id}', [IzinController::class, 'show']);
     Route::resource('izin', IzinController::class);
 
 
-    //route untuk tabel libur
-
-
+    //route untuk libur
     Route::get('libur', [LiburController::class, 'index']);
     Route::get('libur/data', [LiburController::class, 'data_json'])->name('libur.data');
     Route::get('libur/create', [LiburController::class, 'create']);
@@ -79,12 +69,5 @@ Route::middleware('auth')->group(function () {
     Route::get('libur/cari', [LiburController::class, 'cari']);
     Route::get('libur/show/{id}', [LiburController::class, 'show'])->name('libur.show');
 });
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
 
 require __DIR__ . '/auth.php';

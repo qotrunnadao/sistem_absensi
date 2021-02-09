@@ -53,16 +53,18 @@
     </div>
 </div>
 @elseif(Auth::user()->level == 1)
-<div class="col-md-12">
+<div class="row">
+
     @foreach ($libur_data as $value)
-    <div class="callout callout-danger">
-
-        <h5>Libur {{ $value->nama_libur }}</h5>
-        <p>{{ $value->keterangan }} <br>
-            {{ $value->tanggal }}</p>
-
+    <div class="col-md-6">
+        <div class="callout callout-danger">
+            <h5>Libur {{ $value->nama_libur }}</h5>
+            <p>{{ $value->keterangan }} <br>
+                {{ $value->tanggal }}</p>
+        </div>
     </div>
     @endforeach
+
 </div>
 @endif
 @endsection

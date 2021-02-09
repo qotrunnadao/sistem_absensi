@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Ixudra\Curl\Facades\Curl;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
@@ -20,12 +21,9 @@ class UserController extends Controller
         return view('user.index', $data);
     }
 
-    public function profil()
+    public function profil(User $user)
     {
-        $data = array(
-            'data_user' => User::latest()->get(),
-        );
-        return view('user.profil', $data);
+        return view('user.profil', compact('user'));
     }
 
 
@@ -115,5 +113,16 @@ class UserController extends Controller
         $user->delete();
         Alert::success('Berhasil', 'Berhasil Hapus Data User');
         return redirect(route('user.index'));
+    }
+
+    public function getCURL()
+    {
+        $curl = curl_init();
+        curl_setotp($curl, CURLOPT, '');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+        curl_close();
+
+        $result = json_decode($result, true);
     }
 }

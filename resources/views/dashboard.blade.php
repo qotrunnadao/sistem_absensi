@@ -4,8 +4,8 @@
 <div class="col-md-12">
     @if (Auth::user()->level == 1)
     <div class="card card-widget widget-user">
-        <div class="widget-user-header">
-            <h5 class="widget-user-username">Selamat Datang di Sistem Absensi Karyawan</h5>
+        <div class="widget-user-header" style="background: url(&quot;https://jenderalcorp.com/assets/files/banner/sub-bnr-bg-3_jpg_1501172476.jpg&quot;)">
+            <h5 class="widget-user-username" style="color: #ffffff">Selamat Datang di Sistem Absensi Karyawan</h5>
 
         </div>
         <div class="widget-user-image">
@@ -21,6 +21,22 @@
     </div>
 </div>
 @else
+<div class="card card-widget widget-user">
+    <div class="widget-user-header" style="background: url(&quot;https://jenderalcorp.com/assets/files/banner/sub-bnr-bg-3_jpg_1501172476.jpg&quot;)">
+        <h5 class="widget-user-username" style="color: #ffffff">Selamat Datang di Sistem Absensi Karyawan</h5>
+
+    </div>
+    <div class="widget-user-image">
+        <img class="img-circle elevation-2" src="{{ asset('adminlte/dist/img/logoJenderal.jpg') }}" alt="User Avatar">
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col">
+                <p class="text-center"><b>Jenderal Software</b></p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
