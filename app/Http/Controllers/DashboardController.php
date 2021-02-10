@@ -10,7 +10,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         $absensi = Absensi::with('user')->get();
         $masuk = Absensi::where('jenis', 1)->get();
         $pulang = Absensi::where('jenis', 2)->get();

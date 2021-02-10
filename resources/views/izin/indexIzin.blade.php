@@ -25,7 +25,7 @@
                         </thead>
                         <tbody>
                             @php ($no = 1)
-                            @foreach ($izin_data as $value)
+                            @foreach ($data as $value)
                             <tr class="text-center">
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $value->user->name }}</td>
@@ -94,7 +94,7 @@
                         </thead>
                         <tbody>
                             @php ($no = 1)
-                            @foreach ($izin_data as $value)
+                            @foreach ($data as $value)
                             <tr class="text-center">
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $value->created_at }}</td>

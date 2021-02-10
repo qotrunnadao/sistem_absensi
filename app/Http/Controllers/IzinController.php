@@ -20,10 +20,19 @@ class IzinController  extends Controller
 
     public function index()
     {
-        $data = array(
-            'izin_data' => Izin::with('user')->latest()->get(),
-        );
-        return view('izin/indexIzin', $data);
+        if (Auth::user()->level == 0) {
+            $data = Izin::with('user')->latest()->get();
+            return view('izin/indexIzin', compact('data'));
+        } else {
+            $izin = Auth::user()->id;
+            $data = Izin::with('user')->where('user_id', $izin)->latest()->get();
+            return view('izin/indexIzin', compact('data'));
+        }
+        // $izin = Auth::user()->id;
+        // $data = array(
+        //     'izin_data' => Izin::with('user')->where('user_id', $izin)->latest()->get(),
+        // );
+        // return view('izin/indexIzin', $data);
     }
 
     public function create()

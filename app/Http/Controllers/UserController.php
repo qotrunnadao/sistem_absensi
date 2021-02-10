@@ -115,14 +115,41 @@ class UserController extends Controller
         return redirect(route('user.index'));
     }
 
-    public function getCURL()
+    public function getData()
     {
-        $curl = curl_init();
-        curl_setotp($curl, CURLOPT, '');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($curl);
-        curl_close();
+        $response = Curl::to('https://jsonplaceholder.typicode.com/users/1')
+            ->get();
 
-        $result = json_decode($result, true);
+
+        dd($response);
+    }
+
+    public function curl($url)
+    {
+        $ch = curl_init(); // melakukan inisialisasi
+        curl_setopt($ch, CURLOPT_URL, $url); //Set Option, memberikan nilai options seperti alamat URL destinasi
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch); //Eksekusi, melakukan HTTP Request sesuai dengan options yang diberikan dan mengeksekusinya
+        curl_close($ch); //menutup fungsi curl
+        return $output;
+    }
+
+    function get_web_page($url)
+    {
+        $options = array(
+            CURLOPT_CUSTOMREQUEST  => "POST",    // Atur type request, get atau post
+            CURLOPT_POST           => true,    // Atur menjadi GET
+            CURLOPT_FOLLOWLOCATION => true,    // Follow redirect aktif
+            CURLOPT_CONNECTTIMEOUT => 120,     // Atur koneksi timeout
+            CURLOPT_TIMEOUT        => 120,     // Atur response timeout
+        );
+
+        $ch      = curl_init($url);          // Inisialisasi Curl
+        curl_setopt_array($ch, $options);    // Set Opsi
+        $content = curl_exec($ch);           // Eksekusi Curl
+        curl_close($ch);                     // Stop atau tutup script
+
+        $header['content'] = $content;
+        return $header;
     }
 }

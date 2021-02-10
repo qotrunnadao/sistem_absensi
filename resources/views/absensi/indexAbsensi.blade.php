@@ -23,7 +23,7 @@
                         <tbody class="text-center">
                             {{--  looping database  --}}
                             @php ($no = 1)
-                            @foreach ($absensi as $value)
+                            @foreach ($data as $value)
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $value->user->name }}</td>

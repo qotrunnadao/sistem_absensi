@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('absensi/kamera', [AbsensiController::class, 'kamera']);
     Route::get('/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
     Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
+    // Route::get('/cetakuser/{id}', [AbsensiController::class, 'cetakuser'])->name('cetakuser');
 
 
 

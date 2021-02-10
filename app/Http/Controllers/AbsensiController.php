@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Izin;
+use App\Models\User;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -20,9 +21,15 @@ class AbsensiController  extends Controller
 
     public function index()
     {
-        $absensi = Auth::user()->id;
-        $absensi = Absensi::with('user')->latest()->get();
-        return view('absensi/indexAbsensi', compact('absensi'));
+
+        if (Auth::user()->level == 0) {
+            $data = Absensi::with('user')->latest()->get();
+            return view('absensi/indexAbsensi', compact('data'));
+        } else {
+            $absensi = Auth::user()->id;
+            $data = Absensi::with('user')->where('user_id', $absensi)->latest()->get();
+            return view('absensi/indexAbsensi', compact('data'));
+        }
     }
 
     public function store(Request $request)
@@ -40,7 +47,7 @@ class AbsensiController  extends Controller
 
         Absensi::create($data);
         Alert::success('Berhasil', 'Berhasil tambah data Absensi');
-        return redirect('/dashboard');
+        return redirect('/absensi');
     }
 
 
@@ -67,7 +74,10 @@ class AbsensiController  extends Controller
 
     public function cetak()
     {
-        return view('absensi.formcetak');
+        $data = array(
+            'data_user' => User::latest()->get(),
+        );
+        return view('absensi.formcetak', $data);
     }
 
     public function cetakabsensi($dari, $sampai)
@@ -84,6 +94,12 @@ class AbsensiController  extends Controller
             ),
         );
     }
+
+    // public function cetakuser($id)
+    // {
+    //     $cetakuser = Absensi::with('user')->where('user_id', $id)->get();
+    //     return view('absensi.cetakuser', compact('cetakuser'));
+    // }
 
     public function kamera(Request $request)
     {

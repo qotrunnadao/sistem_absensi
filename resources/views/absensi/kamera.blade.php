@@ -34,7 +34,7 @@
                             <div class="" id="my_camera"></div>
                             <input type="hidden" name="image" class="image-tag">
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                            <button type="submit" class="btn btn-primary" value="1" name="jenis" onClick="take_snapshot()" onLoad="getLocation()">masuk</button>
+                            <button type="submit" class="btn btn-primary" value="1" name="jenis" onClick="take_snapshot()">masuk</button>
                             <button type="submit" class="btn btn-danger" name="jenis" value="2" onClick="take_snapshot()">pulang</button>
                             {{-- <input type="hidden" id="longitude" onLoad="getLocation()">
                             <input type="hidden" id="latitude" onLoad="getLocation()"> --}}
