@@ -94,12 +94,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link {{ active_menu(1,'user') }}">
-                        <i class="nav-icon fas fa-user-circle"></i>
-                        <p>Profil</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
                         <i class="nav-icon fas fa-camera"></i>
                         <p>Absen</p>
@@ -132,6 +126,12 @@
                     <a href="<?=url('')?>/libur" class="nav-link {{ active_menu(1,'libur') }}">
                         <i class="nav-icon fas fa-calendar"></i>
                         <p>Hari Libur</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('user.index') }}" class="nav-link {{ active_menu(1,'user') }}">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>Profil</p>
                     </a>
                 </li>
             </ul>

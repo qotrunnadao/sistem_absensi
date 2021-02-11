@@ -29,9 +29,6 @@ Route::middleware('auth')->group(function () {
     // route untuk user
     Route::resource('user', UserController::class);
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('user/profil', function () {
-        return view('user.profil');
-    })->name('user.profil');
     Route::get('get-curl', [UserController::class, 'getCRUL']);
 
 
