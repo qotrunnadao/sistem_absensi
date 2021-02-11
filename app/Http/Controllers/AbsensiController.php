@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Izin;
 use App\Models\User;
 use App\Models\Absensi;
+use App\Models\Libur;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +35,19 @@ class AbsensiController  extends Controller
 
     public function store(Request $request)
     {
+        $data_libur = Libur::pluck('tanggal')->toArray();
+        $cek_weekend = $this->isWeekend(date('Y-m-d'));
+
+        if ($cek_weekend) { //weekend
+            Alert::error('Gagal', 'Weekend ngapain absen');
+            return redirect('/absensi');
+        }
+
+        if (in_array(date('Y-m-d'), $data_libur)) {
+            Alert::error('Gagal', 'Hari ini hari libur');
+            return redirect('/absensi');
+        }
+
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
@@ -105,5 +119,10 @@ class AbsensiController  extends Controller
     {
         $data = Absensi::with('user')->latest()->get();
         return view('absensi.kamera', compact('data'));
+    }
+
+    public function isWeekend($date)
+    {
+        return (date('N', strtotime($date)) >= 6);
     }
 }

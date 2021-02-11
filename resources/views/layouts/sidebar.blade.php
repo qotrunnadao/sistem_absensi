@@ -26,7 +26,7 @@
                 {{-- Dashboard --}}
                 <li class="nav-item">
                     <a href="<?=url('')?>/dashboard" class="nav-link {{ active_menu(1,'dashboard') }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>Home</p>
                     </a>
                 </li>
@@ -89,7 +89,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="<?= url('') ?>/dashboard" class="nav-link {{ active_menu(1,'dashboard') }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>Home</p>
                     </a>
                 </li>
