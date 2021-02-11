@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,17 +16,17 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = array(
-            'data_user' => User::latest()->get(),
-        );
-        return view('user.index', $data);
+        if (Auth::user()->level == 0) {
+            $data = array(
+                'data_user' => User::latest()->get(),
+            );
+            return view('user.index', $data);
+        } else {
+            $user = Auth::user()->id;
+            $data = User::where('id', $user)->latest()->get();
+            return view('user.index', compact('data'));
+        }
     }
-
-    public function profil(User $user)
-    {
-        return view('user.profil', compact('user'));
-    }
-
 
     public function create()
     {

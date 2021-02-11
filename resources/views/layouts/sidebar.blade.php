@@ -93,6 +93,18 @@
                         <p>Home</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('user.index') }}" class="nav-link {{ active_menu(1,'user') }}">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>Profil</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
+                        <i class="nav-icon fas fa-camera"></i>
+                        <p>Absen</p>
+                    </a>
+                </li>
                 <li class="nav-item has-treeview {{ menu_open(1,'absensi') }}  {{ menu_open(1,'izin') }} {{ menu_open(1, 'pengajuan') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-folder"></i>
@@ -120,12 +132,6 @@
                     <a href="<?=url('')?>/libur" class="nav-link {{ active_menu(1,'libur') }}">
                         <i class="nav-icon fas fa-calendar"></i>
                         <p>Hari Libur</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
-                        <i class="nav-icon fas fa-camera"></i>
-                        <p>Absen</p>
                     </a>
                 </li>
             </ul>
