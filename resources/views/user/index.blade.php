@@ -74,9 +74,9 @@
             <div class="card-body box-profile">
                 <div class="text-center">
                     @if ($value->foto)
-                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" class="foto profile-user-img img-fluid img-circle">
+                    <img src="{{ asset('storage/fotouser/' . $value->foto) }}" alt="{{ $value->name }}" class="foto img-thumbnail img-preview">
                     @else
-                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" class="foto profile-user-img img-fluid img-circle">
+                    <img src="{{ asset('img/not-found.png' . $value->foto) }}" alt="{{ $value->name }}" class="foto img-thumbnail img-preview">
                     @endif
                 </div>
                 <h3 class="profile-username text-center">{{ $value->name }}</h3>
@@ -107,10 +107,10 @@
                         </div>
                         <div class="post clearfix">
                             <div class="btn-group">
-                                <a href="{{ route('user.show', $value->id) }}" class="btn btn-info float-right"><i class="fa fa-eye"></i></a>
+                                <a href="{{ route('user.show', $value->id) }}" class="btn btn-info float-right">Detail</a>
                             </div>
                             <div class="btn-group">
-                                <a href="{{ route('user.edit', $value->id) }}" class="btn btn-warning float-right"><i class="fa fa-edit"></i></a>
+                                <a href="{{ route('user.edit', $value->id) }}" class="btn btn-warning float-right">Ubah Data</i></a>
                             </div>
 
                         </div>

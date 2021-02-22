@@ -44,7 +44,7 @@ class AbsensiController  extends Controller
         }
 
         if (in_array(date('Y-m-d'), $data_libur)) {
-            Alert::error('Gagal', 'Hari ini hari libur');
+            Alert::error('Gagal', 'Libur ngapain absen');
             return redirect('/absensi');
         }
 

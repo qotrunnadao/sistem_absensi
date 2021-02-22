@@ -9,7 +9,7 @@
 
         </div>
         <div class="widget-user-image">
-            <img class="img-circle elevation-2" src="{{ asset('adminlte/dist/img/logoJenderal.jpg') }}" alt="User Avatar">
+            <img class="img-circle elevation-2" src="{{ asset('img/logo2.jpg') }}" alt="User Avatar">
         </div>
         <div class="card-footer">
             <div class="row">
@@ -27,7 +27,7 @@
 
     </div>
     <div class="widget-user-image">
-        <img class="img-circle elevation-2" src="{{ asset('adminlte/dist/img/logoJenderal.jpg') }}" alt="User Avatar">
+        <img class="img-circle elevation-2" src="{{ asset('img/logo2.jpg') }}" alt="User Avatar">
     </div>
     <div class="card-footer">
         <div class="row">

@@ -38,6 +38,7 @@
                             <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
                         </div>
                     </div>
+                    @if (Auth::user()->level == 0)
                     <div class="form-group row">
                         <label class="col-md-2" for="varchar">Level</label>
                         <div class="col-md-6">
@@ -52,6 +53,7 @@
                             @endif
                         </div>
                     </div>
+                    @endif
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label" for="foto">Foto</label>
                         <div class="col-md-2">
