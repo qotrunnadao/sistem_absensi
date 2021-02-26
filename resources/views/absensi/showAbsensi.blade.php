@@ -3,8 +3,19 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-outline card-info">
-            <h5 class="card-header bg-transparent border-bottom mt-0"> Detail Data Absensi </h5>
+        <div class="card card-info">
+            <div class="card-header border-bottom mt-0">
+                <h3 class="card-title">
+                    <i class="fas fa-eye mr-1"></i>
+                    Detail Data Absensi
+                </h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
             <div class="card-body">
                 <table class="table table-striped">
                     <div class="mb-3 float-left">
@@ -39,20 +50,31 @@
                         <td width="20%"><b>Updated At</b></td>
                         <td>{{ $absensi_data->updated_at }}</td>
                     </tr>
-                    <tr>
-                        <td width="20%"><b>Lokasi Absen</b></td>
-                        <td><iframe width="100%" height="300" frameborder="10" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps?q=-7.4579354,109.2787015&hl=es;z=14&output=embed"></iframe></td>
-                    </tr>
                 </table>
+            </div>
+        </div>
 
-
-                <h1>Membuat Google Maps dengan API</h1>
+        <div class="card card-info">
+            <div class="card-header border-bottom mt-0">
+                <h3 class="card-title">
+                    <i class="fas fa-map-marker-alt mr-1"></i>
+                    Detail Lokasi Absensi
+                </h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <div class="mb-3 float-left">
+                        <tr>
+                            <td width="20%"><b>Lokasi Absen</b></td>
+                            <td><iframe width="100%" height="300" frameborder="10" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps?q=-7.4579354,109.2787015&hl=es;z=14&output=embed"></iframe></td>
+                        </tr>
+                </table>
+                {{-- <h1>Membuat Google Maps dengan API</h1>
                 <input id="search-input" class="controls" type="text" placeholder="Cari...">
                 <div id="googleMap" style="width:100%;height:300px;"></div>
                 <div id="address"></div>
                 <div id="latitude"></div>
-                <div id="longitude"></div>
-
+                <div id="longitude"></div> --}}
 
                 <a href="<?= url('') ?>/absensi" class="btn btn-danger float-right my-3">
                     <i class="fas fa-sign-out-alt"></i> Kembali
@@ -61,6 +83,7 @@
         </div>
     </div>
 </div>
+
 <script>
     var marker;
     var map;
@@ -158,5 +181,5 @@
         });
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR-API-KEY&callback=gMap&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtbXh4_28zdONLj23vd9J-1XlcAFsoMQU&callback=gMap&libraries=places"></script>
 @endsection

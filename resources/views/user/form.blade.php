@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-outline card-info">
-            <h5 class="card-header bg-transparent border-bottom mt-0"> {{$button}} Data User </h5>
+        <div class="card card-info">
+            <h5 class="card-header border-bottom mt-0"> {{$button}} Data User </h5>
             <div class="card-body">
                 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                     @if ($button =='Edit')@method('PATCH')@endif

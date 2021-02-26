@@ -3,42 +3,55 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
+        <div class="card card-info">
+            <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                <h3 class="card-title">
+                    <i class="fas fa-th mr-1"></i>
+                    Sistem Absensi Face Print
+                </h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <table class="table-sm table-striped text-left" width="100%" align="center">
+                        <tbody>
+                            <tr>
+                                <td>Nama Karyawan</td>
+                                <td>:</td>
+                                <td><span class="badge badge-dark">{{ Auth::user()->name }}</span></td>
+                            </tr>
+                            <tr>
+                                <td>Waktu Sekarang</td>
+                                <td>:</td>
+                                <td> <span id="jam">{{ date(' H:i:s') }}</span></td>
+                            </tr>
+                            <tr>
+                                <td>Tanggal</td>
+                                <td>:</td>
+                                <td><span id="date"><b>{{ date('d F Y ') }}</b> </span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
         <div class="hit text-center hit">
             <div class="callout callout-info">
-                <table class="table-sm text-left" width="100%" align="center">
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="3" class="badge-dark">SISTEM ABSENSI FACEPRINT<br>JENDERAL SOFTWARE</td>
-                        </tr>
-                        <tr>
-                            <td class="bg-info">Waktu Sekarang</td>
-                            <td class="bg-info">:</td>
-                            <td class="bg-info"> <span id="jam">{{ date(' H:i:s') }}</span></td>
-                        </tr>
-                        <tr>
-                            <td class="bg-secondary">Tanggal</td>
-                            <td class="bg-secondary">:</td>
-                            <td class="bg-secondary"><span id="date"><b>{{ date('d F Y ') }}</b> </span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                Kami akan mengambil foto wajah anda untuk verifikasi ketika melakukan absensi
-                <p class="text-center"><b>Posisi wajah harus terlihat jelas</b><br>
-                    <b>Posisi Kepala harus tegak</b><br>
-                </p>
-
-                <div class="container h-100">
-                    <div class="row h-100 justify-content-center align-items-center">
+                <div class="d-flex justify-content-center hit ">
+                    <div class="col-md-6 col-sm-12">
                         <form method="POST" id="form_kirim" action="{{ route('absensi.store') }}" class="col-md-12">
                             @csrf
-                            <div class="" id="my_camera"></div>
+                            <div class="kamera col-md-12 hit" id="my_camera"></div>
                             <input type="hidden" name="image" class="image-tag">
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <button type="submit" class="btn btn-primary" value="1" name="jenis" onClick="take_snapshot()">masuk</button>
                             <button type="submit" class="btn btn-danger" name="jenis" value="2" onClick="take_snapshot()">pulang</button>
-                            {{-- <input type="hidden" id="longitude" onLoad="getLocation()">
-                            <input type="hidden" id="latitude" onLoad="getLocation()"> --}}
-
                             <input type="hidden" name="latitude" id="latitude">
                             <input type="hidden" name="longitude" id="longitude">
 
@@ -49,6 +62,7 @@
         </div>
     </div>
 </div>
+
 <script>
     Webcam.set({
     width: 490,

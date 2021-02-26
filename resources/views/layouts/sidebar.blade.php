@@ -66,12 +66,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="<?=url('') ?>/absensi/kamera" class="nav-link {{ active_menu(1,'kamera') }}">
-                        <i class="nav-icon fas fa-camera"></i>
-                        <p>Kamera</p>
-                    </a>
-                </li>
+                <i class="nav-icon fas fa-camera"></i>
+                <p>Kamera</p>
+                </a>
+                </li> --}}
                 <li class="nav-item">
                     <a href="<?=url('') ?>/formcetak" class="nav-link {{ active_menu(1,'laporan') }}">
                         <i class="nav-icon fas fa-print"></i>

@@ -5,11 +5,10 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
-            <h5 class="card-header bg-transparent border-bottom mt-0"> Data User </h5>
+            <div class="card-header bg-transparent border-bottom mt-0"> <a href="{{ route('user.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> </div>
             <div class="card-body">
-                <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
                 <div class="table-responsive mt-3">
-                    <table id="mytable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="mytable" class="table table-striped dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr class="text-center">
                                 <th>No.</th>
@@ -112,14 +111,10 @@
                             <div class="btn-group">
                                 <a href="{{ route('user.edit', $value->id) }}" class="btn btn-warning float-right">Ubah Data</i></a>
                             </div>
-
                         </div>
-                        <!-- /.post -->
                     </div>
                 </div>
-                <!-- /.tab-content -->
             </div>
-            <!-- /.card-body -->
         </div>
     </div>
 </div>

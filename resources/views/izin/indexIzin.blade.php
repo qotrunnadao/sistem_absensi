@@ -5,11 +5,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
-            <h5 class="card-header bg-transparent border-bottom mt-0"> Data Izin </h5>
+            <div class="card-header bg-transparent border-bottom mt-0"> <a href="izin/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> </div>
             <div class="card-body">
-                <a href="izin/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+
                 <div class="table-responsive mt-3">
-                    <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Izin">
+                    <table class="table table-striped dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Izin">
                         <thead>
                             <tr class="text-center">
                                 <th>No</th>
@@ -76,11 +76,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
-            <h5 class="card-header bg-transparent border-bottom mt-0"> Data Izin </h5>
+            <div class="card-header bg-transparent border-bottom mt-0"> <a href="izin/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> </div>
             <div class="card-body">
-                <a href="izin/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+
                 <div class="table-responsive mt-3">
-                    <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Izin">
+                    <table class="table table-striped dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Izin">
                         <thead>
                             <tr class="text-center">
                                 <th>No</th>

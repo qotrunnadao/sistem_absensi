@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-outline card-info">
-            <h5 class="card-header bg-transparent border-bottom mt-0"> {{$button}} Data Libur </h5>
+        <div class="card card-info">
+            <h5 class="card-header border-bottom mt-0"> {{$button}} Data Libur </h5>
             <div class="card-body">
                 <form action="{{$action}}@if($button == 'Edit')/{{ $libur_data->id}}@endif" method="post" style="padding:10px;">
                     {{ csrf_field() }}

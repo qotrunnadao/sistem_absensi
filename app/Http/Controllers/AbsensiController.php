@@ -88,6 +88,7 @@ class AbsensiController  extends Controller
 
     public function cetak()
     {
+
         $data = array(
             'data_user' => User::latest()->get(),
         );
@@ -96,17 +97,32 @@ class AbsensiController  extends Controller
 
     public function cetakabsensi($dari, $sampai)
     {
-        $cetakabsensi = Absensi::with('user')->whereBetween('created_at', [$dari, $sampai])->get();
-        $izin = Izin::with('user')->where('status', 1)->get();
-        return view(
-            'absensi.cetakabsensi',
-            compact(
-                'cetakabsensi',
-                'dari',
-                'sampai',
-                'izin',
-            ),
-        );
+        if (Auth::user()->level == 0) {
+            $cetakabsensi = Absensi::with('user')->whereBetween('created_at', [$dari, $sampai])->get();
+            $izin = Izin::with('user')->where('status', 1)->get();
+            return view(
+                'absensi.cetakabsensi',
+                compact(
+                    'cetakabsensi',
+                    'dari',
+                    'sampai',
+                    'izin',
+                ),
+            );
+        } else {
+            $absensi = Auth::user()->id;
+            $cetakabsensi = Absensi::with('user')->where('user_id', $absensi)->whereBetween('created_at', [$dari, $sampai])->get();
+            $izin = Izin::with('user')->where('user_id', $absensi)->where('status', 1)->get();
+            return view(
+                'absensi.cetakabsensi',
+                compact(
+                    'cetakabsensi',
+                    'dari',
+                    'sampai',
+                    'izin',
+                ),
+            );
+        }
     }
 
     // public function cetakuser($id)
