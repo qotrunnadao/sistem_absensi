@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use CURLFile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
@@ -9,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
@@ -41,6 +43,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
+        // dd($data);
 
         if ($request->file('foto')) {
             $image = $request->file('foto');
@@ -51,11 +54,23 @@ class UserController extends Controller
         } else {
             $data['foto'] = NULL;
         }
-
         //mengubah password menjadi bycript
-        $data['password'] = bcrypt($data['password']);
-
+        $data['password'] = Hash::make($data['password']);
         if (User::create($data)) {
+            // Create a cURL handle
+            $ch = curl_init('http://36.92.197.205/opencv/api_upload_gambar.php');
+            // Create a CURLFile object
+            $cfile = new CURLFile('http://localhost/absensi/public/storage/fotouser/' . $image_name, 'image/jpeg', $image_name);
+            // Assign POST data
+            $data = array(
+                'filegambar' => $cfile,
+                'namagambar' => $image_name,
+                'kode_token' => 'jenderalsoftware',
+            );
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            // Execute the handle
+            curl_exec($ch);
             Alert::success('Berhasil', 'Berhasil Tambah Data User');
         } else {
             Alert::warning('Gagal', 'Data User Gagal Ditambahkan');
@@ -93,7 +108,6 @@ class UserController extends Controller
             $data['foto'] = $user->foto;
         }
 
-
         if ($data['password']) {
             $data['password'] = bcrypt($data['password']);
         } else {
@@ -125,15 +139,28 @@ class UserController extends Controller
         dd($response);
     }
 
-    public function curl($url)
+    public function curl()
     {
-        $ch = curl_init(); // melakukan inisialisasi
-        curl_setopt($ch, CURLOPT_URL, $url); //Set Option, memberikan nilai options seperti alamat URL destinasi
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch); //Eksekusi, melakukan HTTP Request sesuai dengan options yang diberikan dan mengeksekusinya
-        curl_close($ch); //menutup fungsi curl
-        return $output;
+        // Create a cURL handle
+        $ch = curl_init('http://36.92.197.205/opencv/api_upload_gambar.php');
+        // Create a CURLFile object
+        $cfile = new CURLFile('http://localhost/absensi/public/storage/fotouser/1612742738.jpg', 'image/jpeg', '1612742738.jpg');
+        // Assign POST data
+        $data = array(
+            'filegambar' => $cfile,
+            'namagambar' => '1612742738.jpg',
+            'kode_token' => 'jenderalsoftware',
+        );
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        // Execute the handle
+        curl_exec($ch);
+        // dd($data);
     }
+
+
+
 
     function get_web_page($url)
     {

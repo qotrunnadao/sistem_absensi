@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
-            <div class="card-header bg-transparent border-bottom mt-0"> <a href="izin/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> </div>
+            <div class="card-header bg-transparent border-bottom mt-0"> <a href="izin/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a> </div>
             <div class="card-body">
 
                 <div class="table-responsive mt-3">
@@ -76,7 +76,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
-            <div class="card-header bg-transparent border-bottom mt-0"> <a href="izin/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> </div>
+            <div class="card-header bg-transparent border-bottom mt-0"> <a href="izin/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a> </div>
             <div class="card-body">
 
                 <div class="table-responsive mt-3">

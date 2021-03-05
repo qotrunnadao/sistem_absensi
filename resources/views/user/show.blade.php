@@ -30,7 +30,7 @@
                         <td> {{ $user->level == 1 ? 'Karyawan' : 'Admin' }}</td>
                     </tr>
                     <tr>
-                        <td width="20%"><b>Dibuat Pada</b></td>
+                        <td width="20%"><b>Terdaftar</b></td>
                         <td>{{ $user->created_at }}</td>
                     </tr>
                     <tr>

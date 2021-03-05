@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use CURLFile;
 use App\Models\Izin;
 use App\Models\User;
-use App\Models\Absensi;
 use App\Models\Libur;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
@@ -37,17 +38,14 @@ class AbsensiController  extends Controller
     {
         $data_libur = Libur::pluck('tanggal')->toArray();
         $cek_weekend = $this->isWeekend(date('Y-m-d'));
-
         if ($cek_weekend) { //weekend
             Alert::error('Gagal', 'Weekend ngapain absen');
             return redirect('/absensi');
         }
-
         if (in_array(date('Y-m-d'), $data_libur)) {
             Alert::error('Gagal', 'Libur ngapain absen');
             return redirect('/absensi');
         }
-
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
@@ -60,6 +58,20 @@ class AbsensiController  extends Controller
         $data['foto'] = $fileName;
 
         Absensi::create($data);
+        // Create a cURL handle
+        $ch = curl_init('http://36.92.197.205/opencv/api_upload_gambar.php');
+        // Create a CURLFile object
+        $cfile = new CURLFile('http://localhost/absensi/public/storage/absensi/' . $fileName, 'image/jpeg', $fileName);
+        // Assign POST data
+        $data = array(
+            'filegambar' => $cfile,
+            'namagambar' => $fileName,
+            'kode_token' => 'jenderalsoftware',
+        );
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        // Execute the handle
+        curl_exec($ch);
         Alert::success('Berhasil', 'Berhasil tambah data Absensi');
         return redirect('/absensi');
     }
@@ -74,12 +86,10 @@ class AbsensiController  extends Controller
 
     public function delete($id)
     {
-
         $absensi = Absensi::find($id);
 
         // hapus foto
         unlink(storage_path('app/public/absensi/') . $absensi['foto']);
-
         $absensi->delete();
         // alihkan halaman ke halaman Absensi
         Alert::success('Berhasil', 'Berhasil hapus data Absensi');

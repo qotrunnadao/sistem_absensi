@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark navbar-secondary">
+<nav class="main-header navbar navbar-expand navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -12,7 +12,7 @@
         <li class="nav-item">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#modal-logout">Logout</button>
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-logout">Logout</button>
             </form>
         </li>
     </ul>

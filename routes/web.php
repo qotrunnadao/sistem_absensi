@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
     Route::get('get-curl', [UserController::class, 'getCRUL']);
-
+    Route::get('curl', [UserController::class, 'curl']);
 
     // route untuk Absensi
     Route::get('absensi', [AbsensiController::class, 'index']);
@@ -69,5 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('libur/cari', [LiburController::class, 'cari']);
     Route::get('libur/show/{id}', [LiburController::class, 'show'])->name('libur.show');
 });
+
+
 
 require __DIR__ . '/auth.php';

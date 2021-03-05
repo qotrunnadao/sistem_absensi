@@ -60,12 +60,16 @@
                     <i class="fas fa-map-marker-alt mr-1"></i>
                     Detail Lokasi Absensi
                 </h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-striped">
                     <div class="mb-3 float-left">
                         <tr>
-                            <td width="20%"><b>Lokasi Absen</b></td>
                             <td><iframe width="100%" height="300" frameborder="10" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps?q=-7.4579354,109.2787015&hl=es;z=14&output=embed"></iframe></td>
                         </tr>
                 </table>

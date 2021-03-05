@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="card card-outline card-info">
             <div class="card-header bg-transparent border-bottom mt-0">
-                <a href="libur/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> </div>
+                <a href="libur/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a> </div>
             <div class="card-body">
                 <div class="table-responsive mt-3">
                     <table class="table table-striped dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Libur">
@@ -54,9 +54,8 @@
 </div>
 @elseif(Auth::user()->level == 1)
 <div class="row">
-
     @foreach ($libur_data as $value)
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="callout callout-danger">
             <h5>Libur {{ $value->nama_libur }}</h5>
             <p>{{ $value->keterangan }} <br>

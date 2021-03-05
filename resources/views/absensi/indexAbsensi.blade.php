@@ -5,11 +5,8 @@
     <div class="col-md-12">
         <div class="card card-outline card-info">
             <div class="card-header bg-transparent border-bottom mt-0">
-                @if(Auth::user()->level == 1)
-                <a href="<?=url('') ?>/formcetak" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</a>
-                @endif
+                <h6><i class="fa fa-table"></i> Riwayat Absensi Karyawan</h6>
             </div>
-
             <div class="card-body">
                 <div class="table-responsive mt-3">
                     <table class="table table-striped dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;" id="table-Absensi">

@@ -3,11 +3,8 @@
 @section('content')
 <div class="col-md-12">
     <div class="card card-outline card-info">
-        <h5 class="card-header bg-transparent border-bottom mt-0"> Cetak Laporan Absensi
-            @if(Auth::user()->level == 1)
-            <a href="<?= url('') ?>/absensi" class="btn float-right"><i class="fas fa-sign-out-alt"></i></a>
-            @endif
-        </h5>
+        <h6 class="card-header bg-transparent border-bottom mt-0"> Cetak Laporan Absensi
+        </h6>
         <div class="card-body">
             <form action="printlaporanpegawai" method="post" name="cetak">
                 <div class="form-group row">
