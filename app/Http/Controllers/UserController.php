@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\MockObject\Stub\ReturnSelf;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
@@ -57,24 +58,25 @@ class UserController extends Controller
         //mengubah password menjadi bycript
         $data['password'] = Hash::make($data['password']);
         if (User::create($data)) {
-            // Create a cURL handle
-            $ch = curl_init('http://36.92.197.205/opencv/api_upload_gambar.php');
-            // Create a CURLFile object
-            $cfile = new CURLFile('http://localhost/absensi/public/storage/fotouser/' . $image_name, 'image/jpeg', $image_name);
-            // Assign POST data
-            $data = array(
-                'filegambar' => $cfile,
-                'namagambar' => $image_name,
-                'kode_token' => 'jenderalsoftware',
-            );
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            // Execute the handle
-            curl_exec($ch);
             Alert::success('Berhasil', 'Berhasil Tambah Data User');
         } else {
             Alert::warning('Gagal', 'Data User Gagal Ditambahkan');
         }
+
+        // Create a cURL handle
+        $ch = curl_init('http://36.92.197.205/opencv/api_upload_gambar.php');
+        // Create a CURLFile object
+        $cfile = new CURLFile('http://localhost/absensi/public/storage/fotouser/' . $image_name, 'image/jpeg', $image_name);
+        // Assign POST data
+        $data_gambar = array(
+            'filegambar' => $cfile,
+            'namagambar' => $image_name,
+            'kode_token' => 'jenderalsoftware',
+        );
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_gambar);
+        // Execute the handle
+        curl_exec($ch);
         return redirect(route('user.index'));
     }
 
@@ -130,14 +132,6 @@ class UserController extends Controller
         return redirect(route('user.index'));
     }
 
-    public function getData()
-    {
-        $response = Curl::to('https://jsonplaceholder.typicode.com/users/1')
-            ->get();
-
-
-        dd($response);
-    }
 
     public function curl()
     {
@@ -159,25 +153,21 @@ class UserController extends Controller
         // dd($data);
     }
 
-
-
-
-    function get_web_page($url)
+    public function fotomaster()
     {
-        $options = array(
-            CURLOPT_CUSTOMREQUEST  => "POST",    // Atur type request, get atau post
-            CURLOPT_POST           => true,    // Atur menjadi GET
-            CURLOPT_FOLLOWLOCATION => true,    // Follow redirect aktif
-            CURLOPT_CONNECTTIMEOUT => 120,     // Atur koneksi timeout
-            CURLOPT_TIMEOUT        => 120,     // Atur response timeout
-        );
+        return view('user.fotomaster');
+    }
+    public function simpanfoto(Request $request)
+    {
+        $image_parts = explode(";base64,", $request->image);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
 
-        $ch      = curl_init($url);          // Inisialisasi Curl
-        curl_setopt_array($ch, $options);    // Set Opsi
-        $content = curl_exec($ch);           // Eksekusi Curl
-        curl_close($ch);                     // Stop atau tutup script
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = time() . '.png';
+        $data = $request->all();
 
-        $header['content'] = $content;
-        return $header;
+        Storage::disk('public')->put('fotouser/' . $fileName, $image_base64);
+        $data['foto'] = $fileName;
     }
 }

@@ -36,6 +36,7 @@ class AbsensiController  extends Controller
 
     public function store(Request $request)
     {
+        $absensi = Auth::user()->id;
         $data_libur = Libur::pluck('tanggal')->toArray();
         $cek_weekend = $this->isWeekend(date('Y-m-d'));
         if ($cek_weekend) { //weekend
@@ -51,7 +52,7 @@ class AbsensiController  extends Controller
         $image_type = $image_type_aux[1];
 
         $image_base64 = base64_decode($image_parts[1]);
-        $fileName = time() . '.png';
+        $fileName = time() . '.jpg';
         $data = $request->all();
 
         Storage::disk('public')->put('absensi/' . $fileName, $image_base64);
@@ -73,7 +74,27 @@ class AbsensiController  extends Controller
         // Execute the handle
         curl_exec($ch);
         Alert::success('Berhasil', 'Berhasil tambah data Absensi');
-        return redirect('/absensi');
+        return redirect('/absensi/verifikasi');
+    }
+
+    public function verifikasi()
+    {
+        $session = Auth::user()->id;
+        $user =  DB::table('users')->select('foto')->where('id', $session)->first();
+        $absensi = Absensi::with('user')->select('foto')->where('user_id', $session)->limit(1)->latest(1);
+        $hasil_scan = time();
+
+        $ch = curl_init('http://36.92.197.205/opencv/verif_foto.php?gambar_master=1615283094&&gambar_scan=1615283243&&hasil_scan=hasilscan&&kode_token=jenderalsoftware');
+        $data = array(
+            'gambar_master' => $user,
+            'gambar_scan' => $absensi,
+            'hasil_scan' => $hasil_scan,
+            'kode_token' => 'jenderalsoftware',
+        );
+        dd($data);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_exec($ch);
     }
 
 
@@ -135,11 +156,6 @@ class AbsensiController  extends Controller
         }
     }
 
-    // public function cetakuser($id)
-    // {
-    //     $cetakuser = Absensi::with('user')->where('user_id', $id)->get();
-    //     return view('absensi.cetakuser', compact('cetakuser'));
-    // }
 
     public function kamera(Request $request)
     {

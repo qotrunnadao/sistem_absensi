@@ -29,8 +29,9 @@ Route::middleware('auth')->group(function () {
     // route untuk user
     Route::resource('user', UserController::class);
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('get-curl', [UserController::class, 'getCRUL']);
     Route::get('curl', [UserController::class, 'curl']);
+    Route::get('user/fotomaster/{id}', [UserController::class, 'fotomaster'])->name('user.fotomaster');
+    Route::post('user/simpanfoto', [UserController::class, 'simpanfoto'])->name('user.simpanfoto');
 
     // route untuk Absensi
     Route::get('absensi', [AbsensiController::class, 'index']);
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('absensi/kamera', [AbsensiController::class, 'kamera']);
     Route::get('/formcetak', [AbsensiController::class, 'cetak'])->name('cetak');
     Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
+    Route::get('/absensi/verifikasi', [AbsensiController::class, 'verifikasi']);
     // Route::get('/cetakuser/{id}', [AbsensiController::class, 'cetakuser'])->name('cetakuser');
 
 
