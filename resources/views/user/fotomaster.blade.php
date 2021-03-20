@@ -10,13 +10,15 @@
 
                     <div class="d-flex justify-content-center hit ">
                         <div class="col-md-6 col-sm-12">
-                            <form method="POST" id="form_kirim" class="col-md-12" action="{{ route('user.simpanfoto') }}">
+                            <form method="POST" id="form_kirim" class="col-md-12" action="{{ route('user.simpanfoto') }}" enctype="multipart-form/data">
                                 @csrf
                                 <div class=" kamera col-md-12" id="my_camera">
                                 </div>
-                                <div class=" col-md-12" id="results">
+                                <div class="col-md-6">
+                                    <div id="results"></div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" onClick="take_snapshot()">Daftarkan Wajah</button>
+                                <button type="submit" class="btn btn-primary" value="Take Snapshot" onClick="take_snapshot()">Daftarkan Wajah</button>
+                                <input type="hidden" name="image" class="image-tag">
                                 <a href="<?= url('') ?>/user" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
                             </form>
                         </div>
@@ -42,7 +44,7 @@
     $(".image-tag").val(data_uri);
     //$("#form_kirim").submit();
     //console.log(data_uri);
-    document.getElementById('results').innerHTML ='<img height="100px" src="'+data_uri+'"/>';
+    document.getElementById('results').innerHTML ='<img height="600px" src="'+data_uri+'"/>';
     });
     }
 </script>

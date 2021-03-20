@@ -157,17 +157,17 @@ class UserController extends Controller
     {
         return view('user.fotomaster');
     }
-    public function simpanfoto(Request $request)
+    public function simpanfoto()
     {
-        $image_parts = explode(";base64,", $request->image);
+        $img = $_POST['image'];
+        $image_parts = explode(";base64,", $img);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
 
         $image_base64 = base64_decode($image_parts[1]);
         $fileName = time() . '.png';
-        $data = $request->all();
 
-        Storage::disk('public')->put('fotouser/' . $fileName, $image_base64);
-        $data['foto'] = $fileName;
+        Storage::disk('public')->put('fotomaster/' . $fileName, $image_base64);
+        return redirect(route('user.index'));
     }
 }
