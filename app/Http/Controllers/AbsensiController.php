@@ -38,15 +38,15 @@ class AbsensiController  extends Controller
     {
         $absensi = Auth::user()->id;
         $data_libur = Libur::pluck('tanggal')->toArray();
-        $cek_weekend = $this->isWeekend(date('Y-m-d'));
-        if ($cek_weekend) { //weekend
-            Alert::error('Gagal', 'Weekend ngapain absen');
-            return redirect('/absensi');
-        }
-        if (in_array(date('Y-m-d'), $data_libur)) {
-            Alert::error('Gagal', 'Libur ngapain absen');
-            return redirect('/absensi');
-        }
+        // $cek_weekend = $this->isWeekend(date('Y-m-d'));
+        // if ($cek_weekend) { //weekend
+        //     Alert::error('Gagal', 'Weekend ngapain absen');
+        //     return redirect('/absensi');
+        // }
+        // if (in_array(date('Y-m-d'), $data_libur)) {
+        //     Alert::error('Gagal', 'Libur ngapain absen');
+        //     return redirect('/absensi');
+        // }
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
@@ -73,7 +73,7 @@ class AbsensiController  extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         // Execute the handle
         curl_exec($ch);
-        Alert::success('Berhasil', 'Berhasil tambah data Absensi');
+        //Alert::success('Berhasil', 'Berhasil tambah data Absensi');
         return redirect('/absensi/verifikasi');
     }
 
@@ -81,20 +81,41 @@ class AbsensiController  extends Controller
     {
         $session = Auth::user()->id;
         $user =  DB::table('users')->select('foto')->where('id', $session)->first();
-        $absensi = Absensi::with('user')->select('foto')->where('user_id', $session)->limit(1)->latest(1);
+        $absensi = Absensi::with('user')->select('*')->where('user_id', $session)->latest()->first();
+        $last_foto = str_replace('.jpg', '', $absensi->foto);
+        $foto_master = str_replace('.jpg', '', $user->foto);
         $hasil_scan = time();
+        //dd($absensi);
 
-        $ch = curl_init('http://36.92.197.205/opencv/verif_foto.php?gambar_master=1615283094&&gambar_scan=1615283243&&hasil_scan=hasilscan&&kode_token=jenderalsoftware');
-        $data = array(
-            'gambar_master' => $user,
-            'gambar_scan' => $absensi,
-            'hasil_scan' => $hasil_scan,
-            'kode_token' => 'jenderalsoftware',
-        );
-        dd($data);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_exec($ch);
+        $link = "http://36.92.197.205/opencv/verif_foto.php?gambar_master=" . $foto_master . "&&gambar_scan=" . $last_foto . "&&hasil_scan=" . $hasil_scan . "&&kode_token=jenderalsoftware";
+        //dd($link);
+        $ch = curl_init("http://36.92.197.205/opencv/verif_foto.php?gambar_master=" . $foto_master . "&&gambar_scan=" . $last_foto . "&&hasil_scan=" . $hasil_scan . "&&kode_token=jenderalsoftware");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //response returned but stored not displayed in browser
+        curl_setopt($ch, CURLOPT_TIMEOUT, 1000);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result = curl_exec($ch); //executing request
+        $err = curl_error($ch);
+        $hasil = json_encode($result);
+        //dd(json_decode($hasil));
+        $word = "true";
+        $mystring = $result;
+        if (strpos($mystring, $word) !== false) {
+            //echo "muka tidak sesuai";
+            unlink(storage_path('app/public/absensi/') . $absensi['foto']);
+            $absensi->delete();
+            Alert::error('Gagal', 'Muka Tidak Sesuai');
+            return redirect('/absensi');
+        } else {
+
+            $url = "http://36.92.197.205/opencv/test_hasil/" . $hasil_scan . ".jpg";
+            if ($url) {
+                $contents = file_get_contents($url);
+                $name = substr($url, strrpos($url, '/') + 1);
+                Storage::disk('public')->put('hasil_absensi/' . $name, $contents);
+                Alert::success('Berhasil', 'Berhasil tambah data Absensi');
+                return redirect('/absensi');
+            }
+        }
         //dd($ch);
     }
 
