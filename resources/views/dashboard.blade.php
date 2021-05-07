@@ -20,6 +20,24 @@
         </div>
     </div>
 </div>
+<section class="services padding-top-40 padding-bottom-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img class="embed-responsive-item" src="{{ asset('img/jensof1.jpg') }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="testi" style="text-align: justify; width: 100%">
+                    <p style="font-size: 14px; font-style: normal; line-height: 24px; letter-spacing: normal; font-family: 'Open Sans', sans-serif;">
+                        <b>Sistem Absensi Karyawan Menggunakan Face Print</b> merupakan sistem yang dibuat untuk memenuhi tugas mata kuliah kerja praktik. sistem ini menggabungkan teknologi pengenalan wajah pada saat proses absensi sehingga menambah keakuratan dan keamanan data absensi. sistem ini juga dilengkapi dengan fitur pengajuan cuti karyawan dan juga hari libur perusahaan sehingga akan mempermudah pemilik perusahaan dalam pengeloaan daftar hadir dan hari kerja.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @else
 <div class="card card-widget widget-user">
     <div class="widget-user-header" style="background: url(&quot;https://jenderalcorp.com/assets/files/banner/sub-bnr-bg-3_jpg_1501172476.jpg&quot;)">

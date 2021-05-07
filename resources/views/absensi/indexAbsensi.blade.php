@@ -40,7 +40,7 @@
                                 <td>{{ $value->latitude }}</td>
                                 <td>{{ $value->longitude }}</td>
                                 <td>
-                                    {{-- @if(Auth::user()->level == 0) --}}
+                                    @if(Auth::user()->level == 0)
                                     <div class="btn-group">
                                         <form action="{{ route('absensi.delete', $value->id) }}" method="GET">
                                             @method('DELETE')
@@ -48,11 +48,11 @@
                                             <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </div>
-                                    {{-- @elseif(Auth::user()->level == 1) --}}
+                                    @endif
                                     <div class="btn-group">
                                         <a href="{{ route('absensi.show', $value->id) }}" class='show btn btn-info btn-sm'><i class='fa fa-eye'></i></a>
                                     </div>
-                                    {{-- @endif --}}
+
                                 </td>
                             </tr>
                             @endforeach

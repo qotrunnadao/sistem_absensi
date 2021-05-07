@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cetakabsensi/{dari}/{sampai}', [AbsensiController::class, 'cetakabsensi'])->name('cetakabsensi');
     Route::get('/absensi/verifikasi', [AbsensiController::class, 'verifikasi']);
     // Route::get('/cetakuser/{id}', [AbsensiController::class, 'cetakuser'])->name('cetakuser');
+    // Route::get('/laporan', [AbsensiController::class, 'laporan']);
 
 
 

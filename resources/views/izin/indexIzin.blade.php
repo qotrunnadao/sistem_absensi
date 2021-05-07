@@ -89,7 +89,7 @@
                                 <th>Tgl Mulai</th>
                                 <th>Tgl Berakhir</th>
                                 <th>Status</th>
-                                <th>Hapus</th>
+                                {{-- <th>Hapus</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -109,13 +109,13 @@
                                 @else
                                 <span class="badge badge-danger">Ditolak</span></td>
                                 @endif
-                                <td>
+                                {{-- <td>
                                     <form action="{{ route('izin.destroy', $value->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </form>
-                                </td>
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm hapus"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>

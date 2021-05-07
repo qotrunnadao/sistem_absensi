@@ -125,9 +125,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         // hapus foto
-        unlink(storage_path('app/public/fotouser/') . $user['foto']);
 
         $user->delete();
+        unlink(storage_path('app/public/fotouser/') . $user['foto']);
         Alert::success('Berhasil', 'Berhasil Hapus Data User');
         return redirect(route('user.index'));
     }
